@@ -1,0 +1,12 @@
+﻿===============================================================================
+						Sistema de Registro UAdeO Changelog
+===============================================================================
+
+ > Release 0.1.0 27/02/2023
+	- Primera version de lanzamiento
+	- Implementado el sistema de ingreso de alumno.
+	- Implementado el Sistema de registro de alumno.
+	- Implementado una interfaz grafica para el usuario
+	
+> Release 0.1.1 
+	- Se ha implementado el enfoque de interfaces para el 
