@@ -62,7 +62,6 @@ namespace Registro_UAdeO_2023
             this.btnIngresar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.pnlRegistro.SuspendLayout();
             this.pnlMostrarDatos.SuspendLayout();
@@ -106,7 +105,6 @@ namespace Registro_UAdeO_2023
             // 
             this.pnlRegistro.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlRegistro.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlRegistro.Controls.Add(this.button1);
             this.pnlRegistro.Controls.Add(this.txtSemestre);
             this.pnlRegistro.Controls.Add(this.label10);
             this.pnlRegistro.Controls.Add(this.cboCarrera);
@@ -370,15 +368,6 @@ namespace Registro_UAdeO_2023
             this.label11.TabIndex = 13;
             this.label11.Text = "Ver. 0.1.0";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(514, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 46);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "&Aceptar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // InicioUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,6 +437,5 @@ namespace Registro_UAdeO_2023
         private System.Windows.Forms.TextBox txtSemestre;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private Button button1;
     }
 }
