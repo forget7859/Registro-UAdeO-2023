@@ -153,7 +153,7 @@ namespace Registro_UAdeO_2023
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(350, 48);
+            this.btnAceptar.Location = new System.Drawing.Point(514, 48);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(81, 46);
             this.btnAceptar.TabIndex = 26;
