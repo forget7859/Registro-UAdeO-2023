@@ -18,9 +18,9 @@ namespace Registro_UAdeO_2023
         {
             InitializeComponent();
         }
-        private SqlDataAdapter BDAlumnos, BDCarrera;
-        private DataSet TBAlumnos, TBCarrera;
-        private DataRow RegAlumnos, RegCarrera;
+        private SqlDataAdapter BDDocentes, BDAlumnos, BDCarrera;
+        private DataSet TBDocentes, TBAlumnos, TBCarrera;
+        private DataRow RegDocentes, RegAlumnos, RegCarrera;
         private int IDCarrera;
         protected string STRcon = " SERVER=.; DataBase=RegistroUAdeO; Integrated Security=SSPI";
         private SqlConnection cnn;
@@ -33,43 +33,87 @@ namespace Registro_UAdeO_2023
         }
         private void IngresarDatos() {
             DialogResult d;
+
+            switch (txtMatricula.Text.Length)
+            {
+                case 8:
+                    string STRsql = "SELECT * FROM Alumnos WHERE Matricula = " + txtMatricula.Text.Trim();
+                    SqlCommand cmd = new SqlCommand(STRsql, cnn);
+                    BDAlumnos = new SqlDataAdapter(cmd);
+                    TBAlumnos = new DataSet();
+                    BDAlumnos.Fill(TBAlumnos, "Alumnos");
+                    try
+                    {
+                        RegAlumnos = TBAlumnos.Tables["Alumnos"].Rows[0];
+                        if (txtMatricula.Text.Trim() == Convert.ToString(RegAlumnos["Matricula"]))
+                        {
+                            MostrarInfo();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        d = MessageBox.Show("no esta registrado. Registrate!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        groupBox1.Enabled = false;
+                        pnlRegistro.Visible = true;
+                        SqlConnection cnn = new SqlConnection(STRcon);
+                        string STRSql2 = "SELECT NomLargo FROM Carrera";
+                        SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
+                        BDCarrera = new SqlDataAdapter(cmd1);
+                        TBCarrera = new DataSet();
+                        BDCarrera.Fill(TBCarrera, "Carrera");
+                        RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
+                        for (int i = 0; i <= BindingContext[TBCarrera, "Carrera"].Count - 1; i++)
+                        {
+                            BindingContext[TBCarrera, "Carrera"].Position = i;
+                            RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
+                            cboCarrera.Items.Add(RegCarrera["NomLargo"]);
+                        }
+                    }
+                    break;
+                case 4:
+                   STRsql = "SELECT * FROM Docentes WHERE Matricula = " + txtMatricula.Text.Trim();
+                    cmd = new SqlCommand(STRsql, cnn);
+                    BDDocentes = new SqlDataAdapter(cmd);
+                    TBDocentes = new DataSet();
+                    BDDocentes.Fill(TBDocentes, "Docentes");
+                    try
+                    {
+                        RegDocentes = TBDocentes.Tables["Docentes"].Rows[0];
+                        if (txtMatricula.Text.Trim() == Convert.ToString(RegDocentes["Matricula"]))
+                        {
+                            MostrarInfo();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        d = MessageBox.Show("no esta registrado. Registrate!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        groupBox1.Enabled = false;
+                        pnlRegistro.Visible = true;
+                        SqlConnection cnn = new SqlConnection(STRcon);
+                        string STRSql2 = "SELECT NomLargo FROM Carrera";
+                        SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
+                        BDCarrera = new SqlDataAdapter(cmd1);
+                        TBCarrera = new DataSet();
+                        BDCarrera.Fill(TBCarrera, "Carrera");
+                        RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
+                        for (int i = 0; i <= BindingContext[TBCarrera, "Carrera"].Count - 1; i++)
+                        {
+                            BindingContext[TBCarrera, "Carrera"].Position = i;
+                            RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
+                            cboCarrera.Items.Add(RegCarrera["NomLargo"]);
+                        }
+                    }
+                    break;
+                default:
+                    d = MessageBox.Show("No has ingresado la matricula correctamente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+
+            }
             if (txtMatricula.Text.Length != 8)
             {
-                d = MessageBox.Show("No has ingresado la matricula correctamente!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                
             }
-            string STRsql = "SELECT * FROM Alumnos WHERE Matricula = " + txtMatricula.Text.Trim();
-            SqlCommand cmd = new SqlCommand(STRsql, cnn);
-            BDAlumnos = new SqlDataAdapter(cmd);
-            TBAlumnos = new DataSet();
-            BDAlumnos.Fill(TBAlumnos, "Alumnos");
-            try
-            {
-                RegAlumnos = TBAlumnos.Tables["Alumnos"].Rows[0];
-                if (txtMatricula.Text.Trim() == Convert.ToString(RegAlumnos["Matricula"]))
-                {
-                    MostrarInfo();
-                }
-            }
-            catch (Exception)
-            {
-                d = MessageBox.Show("no esta registrado. Registrate!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    groupBox1.Enabled = false;
-                    pnlRegistro.Visible = true;
-                    SqlConnection cnn = new SqlConnection(STRcon);
-                    string STRSql2 = "SELECT NomLargo FROM Carrera";
-                    SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
-                    BDCarrera = new SqlDataAdapter(cmd1);
-                    TBCarrera = new DataSet();
-                    BDCarrera.Fill(TBCarrera, "Carrera");
-                    RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
-                    for (int i = 0; i <= BindingContext[TBCarrera, "Carrera"].Count - 1; i++)
-                    {
-                        BindingContext[TBCarrera, "Carrera"].Position = i;
-                        RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
-                        cboCarrera.Items.Add(RegCarrera["NomLargo"]);
-                    }
-            }
+            
             RefrescarBD();
         }
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -194,6 +238,10 @@ namespace Registro_UAdeO_2023
         }
         private void txtMatricula_KeyDown_Enter(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                IngresarDatos();
+            }
         }
         private void RefrescarBD()
         {
@@ -263,6 +311,11 @@ namespace Registro_UAdeO_2023
         }
 
         private void txtMatricula_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSemestre_TextChanged(object sender, EventArgs e)
         {
 
         }

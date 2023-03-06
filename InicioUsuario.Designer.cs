@@ -130,6 +130,7 @@ namespace Registro_UAdeO_2023
             this.txtSemestre.Name = "txtSemestre";
             this.txtSemestre.Size = new System.Drawing.Size(48, 20);
             this.txtSemestre.TabIndex = 25;
+            this.txtSemestre.TextChanged += new System.EventHandler(this.txtSemestre_TextChanged);
             this.txtSemestre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSemestre_KeyDown);
             // 
             // label10

@@ -11,6 +11,7 @@ namespace Registro_UAdeO_2023
         {
             InitializeComponent();
         }
+        
         private SqlDataAdapter BDAlumnos, BDCarrera;
         private SqlConnection cnn;
         private DataSet TBAlumnos, TBCarrera;

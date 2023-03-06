@@ -29,6 +29,7 @@ namespace Registro_UAdeO_2023
                 return;
             }
             BuscarMatricula(txtMatricula.Text.Trim());
+
         }
         private void btnModificar_Click(object sender, EventArgs e)
         {
