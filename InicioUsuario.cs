@@ -76,7 +76,7 @@ namespace Registro_UAdeO_2023
                                 continue;
                             }
                             cboCarrera.Items.Add(RegCarrera["NomLargo"]);
-
+                            //
                         }
                     }
                     break;
