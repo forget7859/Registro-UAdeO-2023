@@ -18,7 +18,7 @@ namespace Registro_UAdeO_2023
         private DataRow RegAlumnos, RegCarrera;
 
         public int Matricula, grupo, semestre;
-        public string con,NomCarrera;
+        public string con, NomCarrera;
         private int IDCarrera;
 
         private void btnCancelar2_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace Registro_UAdeO_2023
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             DialogResult d;
-            
+
             if (txtNombre.Text == null)
             {
                 d = MessageBox.Show("El espacio Nombre está vacio!");
@@ -58,7 +58,7 @@ namespace Registro_UAdeO_2023
             if (MessageBox.Show("¿Esta Seguro que Desea crear un nuevo Registro?", "Sí", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 SqlConnection cnn = new SqlConnection(con);
-                string STRsql = " UPDATE Alumnos SET Nombres = '" + txtNombre.Text.Trim() + "',Apellido_Paterno = '" + txtApellidoPaterno.Text.Trim() + "',Apellido_Materno = '" + txtApellidoMaterno.Text.Trim() + "',Carrera = '" + IDCarrera + "',Grupo = '" + txtGrupo.Text.Trim() + "' WHERE Matricula ='"+Matricula+"'";
+                string STRsql = " UPDATE Alumnos SET Nombres = '" + txtNombre.Text.Trim() + "',Apellido_Paterno = '" + txtApellidoPaterno.Text.Trim() + "',Apellido_Materno = '" + txtApellidoMaterno.Text.Trim() + "',Carrera = '" + IDCarrera + "',Grupo = '" + txtGrupo.Text.Trim() + "' WHERE Matricula ='" + Matricula + "'";
                 SqlCommand cmd = new SqlCommand(STRsql, cnn);
                 cmd.Parameters.Clear();
                 cnn.Open();

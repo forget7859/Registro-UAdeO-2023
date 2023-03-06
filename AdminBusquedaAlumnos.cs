@@ -79,14 +79,16 @@ namespace Registro_UAdeO_2023
             string STRSql = "SELECT * FROM Alumnos";
             SqlConnection cnn = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand(STRSql, cnn);
-            try {
+            try
+            {
                 BDAlumnos = new SqlDataAdapter(cmd);
                 TBAlumnos = new DataSet();
                 BDAlumnos.Fill(TBAlumnos, "Alumnos");
                 RegAlumnos = TBAlumnos.Tables["Alumnos"].Rows[0];
             }
-            catch (Exception) {
-                
+            catch (Exception)
+            {
+
                 STRSql = " INSERT INTO Alumnos (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Grupo,Fec_Registro)" +
                  "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@gpo,@f_reg)";
                 cmd = new SqlCommand(STRSql, cnn);
@@ -150,14 +152,16 @@ namespace Registro_UAdeO_2023
             BDAlumnos = new SqlDataAdapter(cmd);
             TBAlumnos = new DataSet();
             BDAlumnos.Fill(TBAlumnos, "Alumnos");
-            try {
+            try
+            {
                 RegAlumnos = TBAlumnos.Tables["Alumnos"].Rows[0];
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 MessageBox.Show("");
                 //return;
             }
-            
+
 
             string STRSql2 = "SELECT ID,NomLargo FROM Carrera WHERE ID=" + RegAlumnos["Carrera"];
             SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);

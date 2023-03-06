@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\forgetMC\Desktop\Registro UAdeO 2003 CopyFuck\</PublishUrl>
+    <PublishUrl>D:\Registro UAdeO 2003\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -81,6 +81,12 @@
     <Compile Include="AdminBusquedaAlumnos.Designer.cs">
       <DependentUpon>AdminBusquedaAlumnos.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminLogin.Designer.cs">
+      <DependentUpon>AdminLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminModificarAlumno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,12 +98,6 @@
     </Compile>
     <Compile Include="AdminListaRegistros.Designer.cs">
       <DependentUpon>AdminListaRegistros.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminLogin.Designer.cs">
-      <DependentUpon>AdminLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="InicioUsuario.cs">
       <SubType>Form</SubType>
@@ -113,11 +113,11 @@
     <EmbeddedResource Include="AdminListaRegistros.resx">
       <DependentUpon>AdminListaRegistros.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminModificarAlumno.resx">
-      <DependentUpon>AdminModificarAlumno.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AdminLogin.resx">
       <DependentUpon>AdminLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminModificarAlumno.resx">
+      <DependentUpon>AdminModificarAlumno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioUsuario.resx">
       <DependentUpon>InicioUsuario.cs</DependentUpon>

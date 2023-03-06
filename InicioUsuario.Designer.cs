@@ -41,12 +41,10 @@ namespace Registro_UAdeO_2023
             this.label10 = new System.Windows.Forms.Label();
             this.cboCarrera = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.txtGrupo = new System.Windows.Forms.TextBox();
             this.txtApellidoMaterno = new System.Windows.Forms.TextBox();
             this.txtApellidoPaterno = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -77,6 +75,7 @@ namespace Registro_UAdeO_2023
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // administradorToolStripMenuItem
             // 
@@ -86,18 +85,19 @@ namespace Registro_UAdeO_2023
             this.administradorToolStripMenuItem.Name = "administradorToolStripMenuItem";
             this.administradorToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.administradorToolStripMenuItem.Text = "Administrador";
+            this.administradorToolStripMenuItem.Click += new System.EventHandler(this.administradorToolStripMenuItem_Click);
             // 
             // listaRegistrosToolStripMenuItem
             // 
             this.listaRegistrosToolStripMenuItem.Name = "listaRegistrosToolStripMenuItem";
-            this.listaRegistrosToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.listaRegistrosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listaRegistrosToolStripMenuItem.Text = "Lista Registros";
             this.listaRegistrosToolStripMenuItem.Click += new System.EventHandler(this.listaRegistrosToolStripMenuItem_Click);
             // 
             // listaUsuariosToolStripMenuItem
             // 
             this.listaUsuariosToolStripMenuItem.Name = "listaUsuariosToolStripMenuItem";
-            this.listaUsuariosToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.listaUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listaUsuariosToolStripMenuItem.Text = "Lista Usuarios";
             this.listaUsuariosToolStripMenuItem.Click += new System.EventHandler(this.listaUsuariosToolStripMenuItem_Click);
             // 
@@ -109,12 +109,10 @@ namespace Registro_UAdeO_2023
             this.pnlRegistro.Controls.Add(this.label10);
             this.pnlRegistro.Controls.Add(this.cboCarrera);
             this.pnlRegistro.Controls.Add(this.btnAceptar);
-            this.pnlRegistro.Controls.Add(this.txtGrupo);
             this.pnlRegistro.Controls.Add(this.txtApellidoMaterno);
             this.pnlRegistro.Controls.Add(this.txtApellidoPaterno);
             this.pnlRegistro.Controls.Add(this.txtNombre);
             this.pnlRegistro.Controls.Add(this.label7);
-            this.pnlRegistro.Controls.Add(this.label5);
             this.pnlRegistro.Controls.Add(this.label3);
             this.pnlRegistro.Controls.Add(this.label2);
             this.pnlRegistro.Controls.Add(this.label6);
@@ -125,7 +123,7 @@ namespace Registro_UAdeO_2023
             // 
             // txtSemestre
             // 
-            this.txtSemestre.Location = new System.Drawing.Point(254, 70);
+            this.txtSemestre.Location = new System.Drawing.Point(271, 70);
             this.txtSemestre.MaxLength = 1;
             this.txtSemestre.Name = "txtSemestre";
             this.txtSemestre.Size = new System.Drawing.Size(48, 20);
@@ -136,7 +134,7 @@ namespace Registro_UAdeO_2023
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(251, 54);
+            this.label10.Location = new System.Drawing.Point(268, 54);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(51, 13);
             this.label10.TabIndex = 28;
@@ -147,7 +145,7 @@ namespace Registro_UAdeO_2023
             this.cboCarrera.FormattingEnabled = true;
             this.cboCarrera.Location = new System.Drawing.Point(6, 70);
             this.cboCarrera.Name = "cboCarrera";
-            this.cboCarrera.Size = new System.Drawing.Size(242, 21);
+            this.cboCarrera.Size = new System.Drawing.Size(261, 21);
             this.cboCarrera.TabIndex = 24;
             this.cboCarrera.SelectedIndexChanged += new System.EventHandler(this.cboCarrera_SelectedIndexChanged);
             this.cboCarrera.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCarrera_KeyDown);
@@ -156,21 +154,11 @@ namespace Registro_UAdeO_2023
             // 
             this.btnAceptar.Location = new System.Drawing.Point(359, 54);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(81, 46);
-            this.btnAceptar.TabIndex = 26;
+            this.btnAceptar.Size = new System.Drawing.Size(175, 46);
+            this.btnAceptar.TabIndex = 27;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // txtGrupo
-            // 
-            this.txtGrupo.Location = new System.Drawing.Point(311, 70);
-            this.txtGrupo.MaxLength = 1;
-            this.txtGrupo.Name = "txtGrupo";
-            this.txtGrupo.Size = new System.Drawing.Size(33, 20);
-            this.txtGrupo.TabIndex = 26;
-            this.txtGrupo.TextChanged += new System.EventHandler(this.txtGrupo_TextChanged);
-            this.txtGrupo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGrupo_KeyDown);
             // 
             // txtApellidoMaterno
             // 
@@ -208,15 +196,6 @@ namespace Registro_UAdeO_2023
             this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 20;
             this.label7.Text = "Carrera";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(308, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Grupo";
             // 
             // label3
             // 
@@ -268,6 +247,7 @@ namespace Registro_UAdeO_2023
             this.lblSemestre.Size = new System.Drawing.Size(57, 13);
             this.lblSemestre.TabIndex = 33;
             this.lblSemestre.Text = "[Semestre]";
+            this.lblSemestre.Click += new System.EventHandler(this.lblSemestre_Click);
             // 
             // lblCarrera
             // 
@@ -295,6 +275,7 @@ namespace Registro_UAdeO_2023
             this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 30;
             this.label9.Text = "Semestre: ";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label8
             // 
@@ -413,12 +394,10 @@ namespace Registro_UAdeO_2023
         private System.Windows.Forms.Panel pnlRegistro;
         private System.Windows.Forms.ComboBox cboCarrera;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.TextBox txtGrupo;
         private System.Windows.Forms.TextBox txtApellidoMaterno;
         private System.Windows.Forms.TextBox txtApellidoPaterno;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;

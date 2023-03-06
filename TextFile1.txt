@@ -9,4 +9,4 @@
 	- Implementado una interfaz grafica para el usuario
 	
 > Release 0.1.1 
-	- Se ha implementado el enfoque de interfaces para el 
+	- Se ha implementado el enfoque de interfaces para el registro rapido

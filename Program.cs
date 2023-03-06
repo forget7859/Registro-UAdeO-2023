@@ -1,5 +1,4 @@
-﻿using Registro_UAdeO_2003;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Registro_UAdeO_2023
