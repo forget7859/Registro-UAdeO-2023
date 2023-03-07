@@ -116,7 +116,7 @@ namespace Registro_UAdeO_2023
                         {
                             BindingContext[TBCarrera, "Carrera"].Position = i;
                             RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
-                            if(cboCarrera.Text == "MAESTRO" || cboCarrera.Text == "DOCENTE")
+                            if (Convert.ToString(RegCarrera["NomLargo"]) == "MAESTRO" || Convert.ToString(RegCarrera["NomLargo"]) == "DOCENTE")
                             {
                                 cboCarrera.Items.Add(RegCarrera["NomLargo"]);
                             }

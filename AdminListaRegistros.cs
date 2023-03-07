@@ -40,7 +40,7 @@ namespace Registro_UAdeO_2023
             }
             catch (Exception)
             {
-
+                //
                 STRSql = " INSERT INTO Alumnos (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Grupo,Fec_Registro)" +
                  "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@gpo,@f_reg)";
                 cmd = new SqlCommand(STRSql, cnn);
