@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -24,6 +25,7 @@ namespace Registro_UAdeO_2023
             
             pnlRegistro.Visible = false;
             pnlMostrarDatos.Visible = false;
+            cboCarrera.Text = "-Elige una carrera-";
             RefrescarBD();
         }
         private void IngresarDatos()
@@ -219,18 +221,15 @@ namespace Registro_UAdeO_2023
         }
         private void cboCarrera_KeyDown(Object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == Convert.ToChar(Keys.Enter))
-            {
+            if (e.KeyValue == Convert.ToChar(Keys.Enter)){
                 txtSemestre.Focus();
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
+        private void btnCancelar_Click(object sender, EventArgs e){
             ReiniciarVentana();
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
+        private void btnAceptar_Click(object sender, EventArgs e){
             DialogResult d;
             switch (txtMatricula.Text.Length)
             {
@@ -282,7 +281,7 @@ namespace Registro_UAdeO_2023
                         cmd.Parameters.AddWithValue("@f_reg", DateTime.Now);
                         cmd.Connection.Open();
                         cmd.ExecuteNonQuery();
-                        cmd.Connection.Close();
+                        cmd.Connection.Close(); 
                         MessageBox.Show("Alumno registrado! Favor de inscribirse a continuacion");
                     }
                         break;
@@ -369,25 +368,34 @@ namespace Registro_UAdeO_2023
             SqlConnection cnn = new SqlConnection(STRcon);
             switch(txtMatricula.Text.Length){
                 case 8:
-                    string STRsql = " INSERT INTO Registros ( Matricula,Fec_InicioSesion) VALUES (@mat,@fec_sesion)";
+                    string STRsql = "INSERT INTO Registros(Matricula, Nombres, Apellido_Paterno, Apellido_Materno, Carrera, Semestre, Fec_Registro, Fec_InicioSesion) " +
+                        "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@fec_Registro,@fec_sesion)";
                     SqlCommand cmd = new SqlCommand(STRsql, cnn);
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@mat", RegAlumnos["Matricula"]);
+                    cmd.Parameters.AddWithValue("@nom", RegAlumnos["Nombres"]);
+                    cmd.Parameters.AddWithValue("@a_p", RegAlumnos["Apellido_Paterno"]);
+                    cmd.Parameters.AddWithValue("@a_m", RegAlumnos["Apellido_Materno"]);
+                    cmd.Parameters.AddWithValue("@carrera", RegAlumnos["Carrera"]);
+                    cmd.Parameters.AddWithValue("@sem", RegAlumnos["Semestre"]);
+                    cmd.Parameters.AddWithValue("@fec_registro", RegAlumnos["Fec_Registro"]);
                     cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
                     break;
                 case 4:
-                    STRsql = " INSERT INTO Registros ( Matricula,Fec_InicioSesion) VALUES (@mat,@fec_sesion)";
+                    STRsql = "INSERT INTO Registros (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Semestre,Fec_Registro,Fec_InicioSesion) " +
+                        "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@fec_Registro,@fec_sesion)";
                     cmd = new SqlCommand(STRsql, cnn);
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@mat", RegDocentes["Matricula"]);
-                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Nombres"]);
-                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Apellido_Paterno"]);
-                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Apellido_Materno"]);
-                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Matricula"]);
-                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Matricula"]);
+                    cmd.Parameters.AddWithValue("@nom", RegDocentes["Nombres"]);
+                    cmd.Parameters.AddWithValue("@a_p", RegDocentes["Apellido_Paterno"]);
+                    cmd.Parameters.AddWithValue("@a_m", RegDocentes["Apellido_Materno"]);
+                    cmd.Parameters.AddWithValue("@carrera", RegDocentes["Carrera"]);
+                    cmd.Parameters.AddWithValue("@sem", 0);
+                    cmd.Parameters.AddWithValue("@fec_registro", RegDocentes["Fec_Registro"]);
                     cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -407,6 +415,12 @@ namespace Registro_UAdeO_2023
             IDCarrera = 0;
             label9.Visible = true;
             lblSemestre.Visible = true;
+            txtNombre.Text = null;
+            txtApellidoPaterno.Text = null;
+            txtApellidoMaterno.Text = null;
+            txtSemestre.Text = null;
+            cboCarrera.Items.Clear();
+            cboCarrera.Text = "-Elige una carrera-";
         }
 
         private void label9_Click(object sender, EventArgs e)
