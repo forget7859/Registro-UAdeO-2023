@@ -17,6 +17,7 @@ namespace Registro_UAdeO_2023
         public string con;
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            AdminListaRegistros_Imprimir frm = new AdminListaRegistros_Imprimir();
 
         }
 

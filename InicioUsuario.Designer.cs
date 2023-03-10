@@ -90,14 +90,14 @@ namespace Registro_UAdeO_2023
             // listaRegistrosToolStripMenuItem
             // 
             this.listaRegistrosToolStripMenuItem.Name = "listaRegistrosToolStripMenuItem";
-            this.listaRegistrosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaRegistrosToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.listaRegistrosToolStripMenuItem.Text = "Lista Registros";
             this.listaRegistrosToolStripMenuItem.Click += new System.EventHandler(this.listaRegistrosToolStripMenuItem_Click);
             // 
             // listaUsuariosToolStripMenuItem
             // 
             this.listaUsuariosToolStripMenuItem.Name = "listaUsuariosToolStripMenuItem";
-            this.listaUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaUsuariosToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.listaUsuariosToolStripMenuItem.Text = "Lista Usuarios";
             this.listaUsuariosToolStripMenuItem.Click += new System.EventHandler(this.listaUsuariosToolStripMenuItem_Click);
             // 
@@ -152,7 +152,7 @@ namespace Registro_UAdeO_2023
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(359, 54);
+            this.btnAceptar.Location = new System.Drawing.Point(325, 54);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(175, 46);
             this.btnAceptar.TabIndex = 27;

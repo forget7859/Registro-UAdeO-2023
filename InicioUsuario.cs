@@ -19,7 +19,7 @@ namespace Registro_UAdeO_2023
         private SqlConnection cnn;
         public void InicioUsuario_Load(object sender, EventArgs e)
         {
-            administradorToolStripMenuItem.Enabled = false;
+            administradorToolStripMenuItem.Enabled = true;
             menuStrip1.Visible = false;
             
             pnlRegistro.Visible = false;
@@ -278,7 +278,6 @@ namespace Registro_UAdeO_2023
                         cmd.Parameters.AddWithValue("@a_p", Convert.ToString(txtApellidoPaterno.Text.Trim()));
                         cmd.Parameters.AddWithValue("@a_m", Convert.ToString(txtApellidoMaterno.Text.Trim()));
                         cmd.Parameters.AddWithValue("@carrera", IDCarrera);
-                       
                         cmd.Parameters.AddWithValue("@sem", Convert.ToInt32(txtSemestre.Text.Trim()));
                         cmd.Parameters.AddWithValue("@f_reg", DateTime.Now);
                         cmd.Connection.Open();
