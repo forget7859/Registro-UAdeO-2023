@@ -44,9 +44,15 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMatricula = new System.Windows.Forms.TextBox();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboSRCHOrenadoPor = new System.Windows.Forms.ComboBox();
+            this.cboUsuario = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tabla
@@ -63,7 +69,7 @@
             this.Fecha_Registro});
             this.Tabla.Location = new System.Drawing.Point(12, 146);
             this.Tabla.Name = "Tabla";
-            this.Tabla.Size = new System.Drawing.Size(783, 375);
+            this.Tabla.Size = new System.Drawing.Size(783, 515);
             this.Tabla.TabIndex = 30;
             // 
             // ID
@@ -180,11 +186,64 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cboUsuario);
+            this.groupBox1.Controls.Add(this.cboSRCHOrenadoPor);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(376, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(419, 121);
+            this.groupBox1.TabIndex = 42;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Buscar por";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(324, 80);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(89, 35);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "&Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Usuario";
+            // 
+            // cboSRCHOrenadoPor
+            // 
+            this.cboSRCHOrenadoPor.FormattingEnabled = true;
+            this.cboSRCHOrenadoPor.Location = new System.Drawing.Point(134, 34);
+            this.cboSRCHOrenadoPor.Name = "cboSRCHOrenadoPor";
+            this.cboSRCHOrenadoPor.Size = new System.Drawing.Size(122, 21);
+            this.cboSRCHOrenadoPor.TabIndex = 43;
+            // 
+            // cboUsuario
+            // 
+            this.cboUsuario.FormattingEnabled = true;
+            this.cboUsuario.Items.AddRange(new object[] {
+            "Alumno",
+            "Docente / Maestros",
+            "Ambos"});
+            this.cboUsuario.Location = new System.Drawing.Point(6, 34);
+            this.cboUsuario.Name = "cboUsuario";
+            this.cboUsuario.Size = new System.Drawing.Size(121, 21);
+            this.cboUsuario.TabIndex = 44;
+            this.cboUsuario.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // AdminListaRegistros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 673);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.Tabla);
             this.Controls.Add(this.pictureBox1);
@@ -196,6 +255,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -217,5 +278,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Carrera;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_Registro;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cboUsuario;
+        private System.Windows.Forms.ComboBox cboSRCHOrenadoPor;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

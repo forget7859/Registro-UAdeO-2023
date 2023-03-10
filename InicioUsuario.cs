@@ -367,17 +367,32 @@ namespace Registro_UAdeO_2023
         private void GuardarDatos()
         {
             SqlConnection cnn = new SqlConnection(STRcon);
-            if (txtMatricula.Text.Length == 8)
-            {
-                string STRsql = " INSERT INTO Registros ( Alumno_Matricula,Fec_InicioSesion)" +
-             "VALUES (@mat,@fec_sesion)";
-                SqlCommand cmd = new SqlCommand(STRsql, cnn);
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@mat", RegAlumnos["Matricula"]);
-                cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
+            switch(txtMatricula.Text.Length){
+                case 8:
+                    string STRsql = " INSERT INTO Registros ( Matricula,Fec_InicioSesion) VALUES (@mat,@fec_sesion)";
+                    SqlCommand cmd = new SqlCommand(STRsql, cnn);
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@mat", RegAlumnos["Matricula"]);
+                    cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                    break;
+                case 4:
+                    STRsql = " INSERT INTO Registros ( Matricula,Fec_InicioSesion) VALUES (@mat,@fec_sesion)";
+                    cmd = new SqlCommand(STRsql, cnn);
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Matricula"]);
+                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Nombres"]);
+                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Apellido_Paterno"]);
+                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Apellido_Materno"]);
+                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Matricula"]);
+                    cmd.Parameters.AddWithValue("@mat", RegDocentes["Matricula"]);
+                    cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+                    break;
             }
             MessageBox.Show("Ya puedes pasar. Disfruta tu estadia!");
         }

@@ -14,6 +14,12 @@ namespace Registro_UAdeO_2023
         private SqlDataAdapter BDRegistro, BDAlumnos, BDCarrera;
         private DataSet TBRegistro, TBAlumnos, TBCarrera;
         private DataRow Registro, RegAlumnos, RegCarrera;
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public string con;
         private void btnImprimir_Click(object sender, EventArgs e)
         {
