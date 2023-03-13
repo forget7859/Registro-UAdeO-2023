@@ -34,8 +34,8 @@ namespace Registro_UAdeO_2023
             DialogResult d;
             if (txtUsername.Text.Trim() == "")
             {
-                //d = MessageBox.Show("El campo de Matricula esta vacio", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                d = MessageBox.Show(txtUsername.Text.Trim() + " / " + txtPassword.Text.Trim(), "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                d = MessageBox.Show("El campo de Matricula esta vacio", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                
                 return;
             }
             if (txtPassword.Text.Trim() == "")
@@ -45,7 +45,6 @@ namespace Registro_UAdeO_2023
             }
 
             string user = txtUsername.Text.Trim();
-            MessageBox.Show(user);
             string StrQuery = "SELECT Username,Password FROM Admin WHERE Username = '" + user + "'";
             SqlCommand cmd = new SqlCommand(StrQuery, connection);
             BDAdmin = new SqlDataAdapter(cmd);
@@ -68,7 +67,6 @@ namespace Registro_UAdeO_2023
                     Close();
                     frm.ShowDialog();
                 }
-                
             }
 
         }

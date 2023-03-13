@@ -366,6 +366,7 @@ namespace Registro_UAdeO_2023
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -374,6 +375,7 @@ namespace Registro_UAdeO_2023
             this.Text = "Inicio Usuario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.InicioUsuario_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InicioUsuario_KeyPress);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pnlRegistro.ResumeLayout(false);

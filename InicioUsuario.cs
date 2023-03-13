@@ -28,9 +28,22 @@ namespace Registro_UAdeO_2023
             cboCarrera.Text = "-Elige una carrera-";
             RefrescarBD();
         }
+        private void InicioUsuario_KeyPress(object sender, KeyEventArgs e) {
+            /*if (e.KeyValue == Convert.ToChar(Keys.Escape))
+            {
+                ReiniciarVentana();
+            }
+            else { return; }*/
+        }
         private void IngresarDatos()
         {
             DialogResult d;
+            try {
+                int isNumber = Convert.ToInt32(txtMatricula.Text.Trim());
+            } catch (Exception) {
+                MessageBox.Show("La matricula no es numerica!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             switch(txtMatricula.Text.Length)
             {
                 case 8:
@@ -55,7 +68,6 @@ namespace Registro_UAdeO_2023
                         txtNombre.Text = "";
                         txtApellidoPaterno.Text = "";
                         txtApellidoMaterno.Text = "";
-                        cboCarrera.Text = "";
                         
                         txtSemestre.Text = "";
                         groupBox1.Enabled = false;
@@ -73,11 +85,11 @@ namespace Registro_UAdeO_2023
                         {
                             BindingContext[TBCarrera, "Carrera"].Position = i;
                             RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
-                            if (Convert.ToString(RegCarrera["NomLargo"]) == "MAESTRO" && Convert.ToString(RegCarrera["NomLargo"]) == "DOCENTE")
+                            if (Convert.ToString(RegCarrera["NomLargo"]) != "MAESTRO" && Convert.ToString(RegCarrera["NomLargo"]) != "DOCENTE")
                             {
-                                continue;
+                                cboCarrera.Items.Add(RegCarrera["NomLargo"]);
                             }
-                            cboCarrera.Items.Add(RegCarrera["NomLargo"]);
+                            
                             //
                         }
                     }
@@ -225,10 +237,6 @@ namespace Registro_UAdeO_2023
                 txtSemestre.Focus();
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e){
-            ReiniciarVentana();
-        }
-
         private void btnAceptar_Click(object sender, EventArgs e){
             DialogResult d;
             switch (txtMatricula.Text.Length)
@@ -334,6 +342,9 @@ namespace Registro_UAdeO_2023
         }
         private void txtMatricula_KeyDown_Enter(object sender, KeyEventArgs e)
         {
+            if (e.KeyValue == Convert.ToChar(Keys.Enter)) {
+                IngresarDatos();
+            }
         }
         private void RefrescarBD()
         {

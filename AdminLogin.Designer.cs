@@ -38,7 +38,7 @@
             this.btnLogin.Location = new System.Drawing.Point(38, 99);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(99, 34);
-            this.btnLogin.TabIndex = 0;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "&Ingresar";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -60,7 +60,7 @@
             this.txtUsername.MaxLength = 8;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(100, 20);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 1;
             this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // AdminLogin
@@ -71,6 +71,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.btnLogin);
+            this.KeyPreview = true;
             this.Name = "AdminLogin";
             this.Text = "AdminLogin";
             this.Load += new System.EventHandler(this.AdminLogin_Load);
