@@ -307,7 +307,7 @@ namespace Registro_UAdeO_2023
             // txtMatricula
             // 
             this.txtMatricula.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.txtMatricula.Location = new System.Drawing.Point(192, 30);
+            this.txtMatricula.Location = new System.Drawing.Point(191, 30);
             this.txtMatricula.MaxLength = 8;
             this.txtMatricula.Name = "txtMatricula";
             this.txtMatricula.Size = new System.Drawing.Size(156, 20);
@@ -355,7 +355,7 @@ namespace Registro_UAdeO_2023
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.BackgroundImage = global::Registro_UAdeO_2023.Properties.Resources.Lince_Circul1;
+            this.BackgroundImage = global::Registro_UAdeO_2023.Properties.Resources.Lince_Circul;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(800, 520);
             this.Controls.Add(this.label11);

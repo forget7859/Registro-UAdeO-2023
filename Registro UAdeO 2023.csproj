@@ -81,12 +81,6 @@
     <Compile Include="AdminBusquedaAlumnos.Designer.cs">
       <DependentUpon>AdminBusquedaAlumnos.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminListaRegistros_Imprimir.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminListaRegistros_Imprimir.Designer.cs">
-      <DependentUpon>AdminListaRegistros_Imprimir.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdminLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,9 +112,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminListaRegistros.resx">
       <DependentUpon>AdminListaRegistros.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminListaRegistros_Imprimir.resx">
-      <DependentUpon>AdminListaRegistros_Imprimir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminLogin.resx">
       <DependentUpon>AdminLogin.cs</DependentUpon>
@@ -183,6 +174,8 @@
     <None Include="Resources\Lince-Circul1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Bitmap1.bmp" />
+    <None Include="Resources\logo-UAdeO-retina.png" />
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -139,8 +139,8 @@ namespace Registro_UAdeO_2023
                 Tabla.Rows[i].Cells[2].Value = RegAlumnos["Apellido_Paterno"];
                 Tabla.Rows[i].Cells[3].Value = RegAlumnos["Apellido_Materno"];
                 Tabla.Rows[i].Cells[4].Value = RegCarrera["NomLargo"];
-                Tabla.Rows[i].Cells[5].Value = RegAlumnos["Grupo"];
-                Tabla.Rows[i].Cells[6].Value = RegAlumnos["Fec_Registro"];
+                //Tabla.Rows[i].Cells[5].Value = RegAlumnos["Grupo"];
+                Tabla.Rows[i].Cells[5].Value = RegAlumnos["Fec_Registro"];
             }
         }
         private void BuscarMatricula(string Matricula)

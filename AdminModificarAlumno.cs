@@ -85,7 +85,7 @@ namespace Registro_UAdeO_2023
             TBCarrera = new DataSet();
             BDCarrera.Fill(TBCarrera, "Carrera");
             RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
-            for (int i = 0; i <= BindingContext[TBCarrera, "Carrera"].Count - 1; i++)
+            for (int i = 1; i <= BindingContext[TBCarrera, "Carrera"].Count - 1; i++)
             {
                 BindingContext[TBCarrera, "Carrera"].Position = i;
                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];

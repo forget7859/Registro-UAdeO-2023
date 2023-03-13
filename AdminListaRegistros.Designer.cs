@@ -36,7 +36,8 @@
             this.Apellido_Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido_Materno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Carrera = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Grupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Semestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fec_InicioSesión = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -45,10 +46,11 @@
             this.txtMatricula = new System.Windows.Forms.TextBox();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cboSRCHOrenadoPor = new System.Windows.Forms.ComboBox();
             this.cboUsuario = new System.Windows.Forms.ComboBox();
+            this.cboSRCHOrenadoPor = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.printDocRegistros = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -65,12 +67,14 @@
             this.Apellido_Paterno,
             this.Apellido_Materno,
             this.Carrera,
-            this.Grupo,
+            this.Semestre,
+            this.Fec_InicioSesión,
             this.Fecha_Registro});
             this.Tabla.Location = new System.Drawing.Point(12, 146);
             this.Tabla.Name = "Tabla";
-            this.Tabla.Size = new System.Drawing.Size(783, 515);
+            this.Tabla.Size = new System.Drawing.Size(984, 515);
             this.Tabla.TabIndex = 30;
+            
             // 
             // ID
             // 
@@ -112,13 +116,20 @@
             this.Carrera.ReadOnly = true;
             this.Carrera.Width = 66;
             // 
-            // Grupo
+            // Semestre
             // 
-            this.Grupo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Grupo.HeaderText = "Grupo";
-            this.Grupo.Name = "Grupo";
-            this.Grupo.ReadOnly = true;
-            this.Grupo.Width = 61;
+            this.Semestre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Semestre.HeaderText = "Semestre";
+            this.Semestre.Name = "Semestre";
+            this.Semestre.Width = 76;
+            // 
+            // Fec_InicioSesión
+            // 
+            this.Fec_InicioSesión.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Fec_InicioSesión.HeaderText = "Fecha de Ingreso";
+            this.Fec_InicioSesión.Name = "Fec_InicioSesión";
+            this.Fec_InicioSesión.ReadOnly = true;
+            this.Fec_InicioSesión.Width = 106;
             // 
             // Fecha_Registro
             // 
@@ -194,36 +205,10 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(376, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(419, 121);
+            this.groupBox1.Size = new System.Drawing.Size(451, 128);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar por";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(324, 80);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 35);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "&Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 42;
-            this.label1.Text = "Usuario";
-            // 
-            // cboSRCHOrenadoPor
-            // 
-            this.cboSRCHOrenadoPor.FormattingEnabled = true;
-            this.cboSRCHOrenadoPor.Location = new System.Drawing.Point(134, 34);
-            this.cboSRCHOrenadoPor.Name = "cboSRCHOrenadoPor";
-            this.cboSRCHOrenadoPor.Size = new System.Drawing.Size(122, 21);
-            this.cboSRCHOrenadoPor.TabIndex = 43;
             // 
             // cboUsuario
             // 
@@ -236,13 +221,43 @@
             this.cboUsuario.Name = "cboUsuario";
             this.cboUsuario.Size = new System.Drawing.Size(121, 21);
             this.cboUsuario.TabIndex = 44;
-            this.cboUsuario.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            
+            // 
+            // cboSRCHOrenadoPor
+            // 
+            this.cboSRCHOrenadoPor.FormattingEnabled = true;
+            this.cboSRCHOrenadoPor.Location = new System.Drawing.Point(134, 34);
+            this.cboSRCHOrenadoPor.Name = "cboSRCHOrenadoPor";
+            this.cboSRCHOrenadoPor.Size = new System.Drawing.Size(122, 21);
+            this.cboSRCHOrenadoPor.TabIndex = 43;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Usuario";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(324, 80);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(89, 35);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "&Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // printDocRegistros
+            // 
+            this.printDocRegistros.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocRegistros_PrintPage);
             // 
             // AdminListaRegistros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 673);
+            this.ClientSize = new System.Drawing.Size(1030, 673);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.Tabla);
@@ -270,18 +285,20 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtMatricula;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cboUsuario;
+        private System.Windows.Forms.ComboBox cboSRCHOrenadoPor;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Matricula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido_Paterno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido_Materno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Carrera;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Grupo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Semestre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fec_InicioSesión;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_Registro;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cboUsuario;
-        private System.Windows.Forms.ComboBox cboSRCHOrenadoPor;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Drawing.Printing.PrintDocument printDocRegistros;
     }
 }

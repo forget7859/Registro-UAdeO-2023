@@ -130,7 +130,7 @@
   <data name="Lince-Circul" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Lince-Circul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Lince-Circul1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Lince-Circul1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logo_UAdeO_retina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo-UAdeO-retina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

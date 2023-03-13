@@ -16,7 +16,7 @@ namespace Registro_UAdeO_2023
         {
             connection = new SqlConnection();
             connection.ConnectionString = con;
-            InitializeComponent();
+            txtUsername.Focus();
         }
 
         private SqlDataAdapter BDAdmin;
@@ -27,16 +27,15 @@ namespace Registro_UAdeO_2023
         public int AccessType; // 0 para entrar a los registros de Usuario, 1 para entrar Registros de sesiónes
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            IngresarDatos();
+            
+        }
+        private void IngresarDatos() {
             DialogResult d;
-            //if ((txtAdminMatricula.Text == "") && (txtcontraseña.Text == ""))
-            //{
-            //dialog.showAlert("Alerta!", "No has llenado tu matricula y contraseña");
-            //d = MessageBox.Show("Los campos estan vacios", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //return;
-            //}
             if (txtUsername.Text.Trim() == "")
             {
-                d = MessageBox.Show("El campo de Matricula esta vacio", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //d = MessageBox.Show("El campo de Matricula esta vacio", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                d = MessageBox.Show(txtUsername.Text.Trim() + " / " + txtPassword.Text.Trim(), "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (txtPassword.Text.Trim() == "")
@@ -59,15 +58,36 @@ namespace Registro_UAdeO_2023
                 {
                     AdminBusquedaAlumnos frm = new AdminBusquedaAlumnos();
                     frm.con = con;
+                    Close();
                     frm.ShowDialog();
                 }
                 if (AccessType == 1)
                 {
                     AdminListaRegistros frm = new AdminListaRegistros();
                     frm.con = con;
+                    Close();
                     frm.ShowDialog();
                 }
+                
             }
+
+        }
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyValue == Convert.ToChar(Keys.Enter))
+            {
+                txtPassword.Focus();
+            }
+        }
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyValue == Convert.ToChar(Keys.Enter))
+            {
+                IngresarDatos();
+            }
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

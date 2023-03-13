@@ -83,16 +83,6 @@ namespace Registro_UAdeO_2023.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Lince_Circul1 {
-            get {
-                object obj = ResourceManager.GetObject("Lince-Circul1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Lince_Circulo_R886 {
             get {
                 object obj = ResourceManager.GetObject("Lince-Circulo-R886", resourceCulture);
@@ -106,6 +96,16 @@ namespace Registro_UAdeO_2023.Properties {
         internal static System.Drawing.Bitmap logo_repositorioUAdeO {
             get {
                 object obj = ResourceManager.GetObject("logo-repositorioUAdeO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo_UAdeO_retina {
+            get {
+                object obj = ResourceManager.GetObject("logo_UAdeO_retina", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

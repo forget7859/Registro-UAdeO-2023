@@ -21,7 +21,7 @@ namespace Registro_UAdeO_2023
         public void InicioUsuario_Load(object sender, EventArgs e)
         {
             administradorToolStripMenuItem.Enabled = true;
-            menuStrip1.Visible = false;
+            menuStrip1.Visible = true;
             
             pnlRegistro.Visible = false;
             pnlMostrarDatos.Visible = false;
@@ -345,11 +345,8 @@ namespace Registro_UAdeO_2023
             AdminLogin frm = new AdminLogin();
             frm.AccessType = 1;
             frm.con = STRcon;
-            frm.ShowDialog();
+            frm.Show();
         }
-        private void txtGrupo_TextChanged(object sender, EventArgs e)
-        { }
-
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
 
@@ -359,7 +356,7 @@ namespace Registro_UAdeO_2023
             AdminLogin frm = new AdminLogin();
             frm.AccessType = 0;
             frm.con = STRcon;
-            frm.ShowDialog();
+            frm.Show();
 
 
         }
