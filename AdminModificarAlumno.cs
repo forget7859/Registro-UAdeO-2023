@@ -13,7 +13,7 @@ namespace Registro_UAdeO_2023
         }
         
         private SqlDataAdapter BDAlumnos, BDCarrera;
-        private SqlConnection cnn;
+        //private SqlConnection cnn;
         private DataSet TBAlumnos, TBCarrera;
         private DataRow RegAlumnos, RegCarrera;
 

@@ -22,7 +22,9 @@ namespace Registro_UAdeO_2023
         public string con;
         private void printDocRegistros_PrintPage(object sender, PrintPageEventArgs e)
         {
-
+            int T_l_corner = 100, T_Top = 100;
+            string hora = Convert.ToString(DateTime.Now).Substring(10);
+            string fecha = Convert.ToString(DateTime.Now).Substring(0,9);
             e.Graphics.DrawString("Reporte de Ingreso al Centro de Computo", new Font("Calibri", 18, FontStyle.Bold), Brushes.Black, new Point(200, 50));
             e.Graphics.DrawString(Convert.ToString("Fecha de Reporte: "+fecha), new Font("Calibri", 14, FontStyle.Bold), Brushes.Black, new Point(200, 80));
             e.Graphics.DrawString(Convert.ToString("Hora"+hora), new Font("Calibri", 14, FontStyle.Bold), Brushes.Black, new Point(450, 80));
@@ -59,7 +61,6 @@ namespace Registro_UAdeO_2023
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            AdminListaRegistros_Imprimir frm = new AdminListaRegistros_Imprimir();
 
         }
 
@@ -125,7 +126,7 @@ namespace Registro_UAdeO_2023
 
             for (int i = 0; i < BindingContext[TBRegistros, "Registros"].Count; i++)
             {
-                string STRSql3 = "SELECT ID,NomLargo FROM Carrera WHERE ID=" + RegAlumnos["Carrera"];
+                string STRSql3 = "SELECT ID,NomLargo FROM Carrera WHERE ID=" + RegRegistros["Carrera"];
                 SqlCommand cmd2 = new SqlCommand(STRSql3, cnn);
                 BDCarrera = new SqlDataAdapter(cmd2);
                 TBCarrera = new DataSet();
@@ -133,13 +134,13 @@ namespace Registro_UAdeO_2023
                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
                 RegRegistros = TBRegistros.Tables["Registros"].Rows[i];
                 Tabla.Rows.Add();
-                Tabla.Rows[i].Cells[0].Value = RegAlumnos["Matricula"];
-                Tabla.Rows[i].Cells[1].Value = RegAlumnos["Nombres"];
-                Tabla.Rows[i].Cells[2].Value = RegAlumnos["Apellido_Paterno"];
-                Tabla.Rows[i].Cells[3].Value = RegAlumnos["Apellido_Materno"];
+                Tabla.Rows[i].Cells[0].Value = RegRegistros["Matricula"];
+                Tabla.Rows[i].Cells[1].Value = RegRegistros["Nombres"];
+                Tabla.Rows[i].Cells[2].Value = RegRegistros["Apellido_Paterno"];
+                Tabla.Rows[i].Cells[3].Value = RegRegistros["Apellido_Materno"];
                 Tabla.Rows[i].Cells[4].Value = RegCarrera["NomLargo"];
-                Tabla.Rows[i].Cells[5].Value = RegAlumnos["Grupo"];
-                Tabla.Rows[i].Cells[6].Value = RegAlumnos["Fec_Registro"];
+                Tabla.Rows[i].Cells[5].Value = RegRegistros["Grupo"];
+                Tabla.Rows[i].Cells[6].Value = RegRegistros["Fec_Registro"];
             }
         }
     }

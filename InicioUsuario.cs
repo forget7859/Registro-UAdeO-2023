@@ -12,15 +12,15 @@ namespace Registro_UAdeO_2023
         {
             InitializeComponent();
         }
-        private SqlDataAdapter BDDocentes,BDAlumnos, BDCarrera;
-        private DataSet TBDocentes,TBAlumnos, TBCarrera;
-        private DataRow RegDocentes,RegAlumnos, RegCarrera;
+        private SqlDataAdapter BDDocentes, BDAlumnos, BDCarrera;
+        private DataSet TBDocentes, TBAlumnos, TBCarrera;
+        private DataRow RegDocentes, RegAlumnos, RegCarrera;
         private int IDCarrera;
         protected string STRcon = " SERVER=.; DataBase=RegistroUAdeO; Integrated Security=SSPI";
         private SqlConnection cnn;
         public void InicioUsuario_Load(object sender, EventArgs e)
         {
-            administradorToolStripMenuItem.Enabled = true;
+            administradorToolStripMenuItem.Enabled = false;
             menuStrip1.Visible = true;
             
             pnlRegistro.Visible = false;
@@ -29,11 +29,11 @@ namespace Registro_UAdeO_2023
             RefrescarBD();
         }
         private void InicioUsuario_KeyPress(object sender, KeyEventArgs e) {
-            /*if (e.KeyValue == Convert.ToChar(Keys.Escape))
+            if (e.KeyValue == Convert.ToChar(Keys.Escape))
             {
                 ReiniciarVentana();
             }
-            else { return; }*/
+            else { return; }
         }
         private void IngresarDatos()
         {
@@ -104,20 +104,27 @@ namespace Registro_UAdeO_2023
                     try
                     {
                         RegDocentes = TBDocentes.Tables["Docentes"].Rows[0];
-                        if (txtMatricula.Text.Trim() == Convert.ToString(RegDocentes["Matricula"]))
+                        if (txtMatricula.Text.Trim() == Convert.ToString(RegDocentes["Matricula"]).Trim())
                         {
+                            MessageBox.Show("SI esta " + txtMatricula.Text.Trim());
                             MostrarInfo();
                         }
+                    
+                        
+                        MessageBox.Show("no esta "+txtMatricula.Text.Trim());
                     }
                     catch (Exception)
                     {
-                        d = MessageBox.Show("no esta registrado Docente. Registrate!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        d = MessageBox.Show("no esta registrado. Registrate!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        txtNombre.Text = "";
+                        txtApellidoPaterno.Text = "";
+                        txtApellidoMaterno.Text = "";
+
+                        txtSemestre.Text = "";
                         groupBox1.Enabled = false;
-                        pnlRegistro.Visible = true;
-                        txtSemestre.Visible = false;
-                        label10.Visible = false;
-                        
-                        
+                        txtSemestre.Visible = true;
+
                         pnlRegistro.Visible = true;
                         SqlConnection cnn = new SqlConnection(STRcon);
                         string STRSql2 = "SELECT NomLargo FROM Carrera";
@@ -134,6 +141,7 @@ namespace Registro_UAdeO_2023
                             {
                                 cboCarrera.Items.Add(RegCarrera["NomLargo"]);
                             }
+
                         }
                     }
                     break;
@@ -194,9 +202,9 @@ namespace Registro_UAdeO_2023
                     BindingContext[TBDocentes, "Docentes"].Position = 0;
                     RegDocentes = TBDocentes.Tables["Docentes"].Rows[0];
 
-                    STRSql2 = "SELECT NomLargo FROM Carrera WHERE ID=" + RegDocentes["Carrera"];
-                    cmd1 = new SqlCommand(STRSql2, cnn);
-                    BDCarrera = new SqlDataAdapter(cmd1);
+                    STRSql = "SELECT NomLargo FROM Carrera WHERE ID=" + RegDocentes["Carrera"];
+                    cmd = new SqlCommand(STRSql, cnn);
+                    BDCarrera = new SqlDataAdapter(cmd);
                     TBCarrera = new DataSet();
                     BDCarrera.Fill(TBCarrera, "Carrera");
                     RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
@@ -207,12 +215,12 @@ namespace Registro_UAdeO_2023
                     }
                     lblNombres.Text = "" + Convert.ToString(RegDocentes["Nombres"]) + " " + Convert.ToString(RegDocentes["Apellido_Paterno"]) + " " + Convert.ToString(RegDocentes["Apellido_Materno"]) + "";
                     lblCarrera.Text = "" + Convert.ToString(RegCarrera["NomLargo"]) + "";
-                    label9.Visible = false;
                     lblSemestre.Visible = false;
+                    label9.Visible = false;
+                    label8.Text = "Ocupación:";
                     pnlMostrarDatos.Visible = true;
                     GuardarDatos();
                     ReiniciarVentana();
-
                     break;
 
                 default:
@@ -327,7 +335,6 @@ namespace Registro_UAdeO_2023
                         cmd.Parameters.AddWithValue("@a_p", Convert.ToString(txtApellidoPaterno.Text.Trim()));
                         cmd.Parameters.AddWithValue("@a_m", Convert.ToString(txtApellidoMaterno.Text.Trim()));
                         cmd.Parameters.AddWithValue("@carrera", IDCarrera);
-                      
                         cmd.Parameters.AddWithValue("@f_reg", DateTime.Now);
                         cmd.Connection.Open();
                         cmd.ExecuteNonQuery();
@@ -422,6 +429,7 @@ namespace Registro_UAdeO_2023
             
             IDCarrera = 0;
             label9.Visible = true;
+            label8.Text = "Carrera:";
             lblSemestre.Visible = true;
             txtNombre.Text = null;
             txtApellidoPaterno.Text = null;
