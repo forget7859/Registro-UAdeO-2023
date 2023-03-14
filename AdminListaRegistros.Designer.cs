@@ -30,15 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminListaRegistros));
             this.Tabla = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido_Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido_Materno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Carrera = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Semestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fec_InicioSesión = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha_Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -51,6 +42,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.printDocRegistros = new System.Drawing.Printing.PrintDocument();
+            this.Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido_Paterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido_Materno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Carrera = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Semestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fec_InicioSesión = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha_Registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Tabla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -61,7 +60,6 @@
             // 
             this.Tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Tabla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
             this.Matricula,
             this.Nombre,
             this.Apellido_Paterno,
@@ -74,70 +72,6 @@
             this.Tabla.Name = "Tabla";
             this.Tabla.Size = new System.Drawing.Size(984, 515);
             this.Tabla.TabIndex = 30;
-            
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Index";
-            this.ID.Name = "ID";
-            // 
-            // Matricula
-            // 
-            this.Matricula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Matricula.HeaderText = "Matricula";
-            this.Matricula.MaxInputLength = 8;
-            this.Matricula.Name = "Matricula";
-            this.Matricula.ReadOnly = true;
-            this.Matricula.Width = 75;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Apellido_Paterno
-            // 
-            this.Apellido_Paterno.HeaderText = "Apellido Paterno";
-            this.Apellido_Paterno.Name = "Apellido_Paterno";
-            this.Apellido_Paterno.ReadOnly = true;
-            // 
-            // Apellido_Materno
-            // 
-            this.Apellido_Materno.HeaderText = "Apellido Materno";
-            this.Apellido_Materno.Name = "Apellido_Materno";
-            this.Apellido_Materno.ReadOnly = true;
-            // 
-            // Carrera
-            // 
-            this.Carrera.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Carrera.HeaderText = "Carrera";
-            this.Carrera.Name = "Carrera";
-            this.Carrera.ReadOnly = true;
-            this.Carrera.Width = 66;
-            // 
-            // Semestre
-            // 
-            this.Semestre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Semestre.HeaderText = "Semestre";
-            this.Semestre.Name = "Semestre";
-            this.Semestre.Width = 76;
-            // 
-            // Fec_InicioSesión
-            // 
-            this.Fec_InicioSesión.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Fec_InicioSesión.HeaderText = "Fecha de Ingreso";
-            this.Fec_InicioSesión.Name = "Fec_InicioSesión";
-            this.Fec_InicioSesión.ReadOnly = true;
-            this.Fec_InicioSesión.Width = 106;
-            // 
-            // Fecha_Registro
-            // 
-            this.Fecha_Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Fecha_Registro.HeaderText = "Fecha de Registro";
-            this.Fecha_Registro.Name = "Fecha_Registro";
-            this.Fecha_Registro.ReadOnly = true;
-            this.Fecha_Registro.Width = 109;
             // 
             // pictureBox1
             // 
@@ -221,7 +155,6 @@
             this.cboUsuario.Name = "cboUsuario";
             this.cboUsuario.Size = new System.Drawing.Size(121, 21);
             this.cboUsuario.TabIndex = 44;
-            
             // 
             // cboSRCHOrenadoPor
             // 
@@ -252,6 +185,70 @@
             // printDocRegistros
             // 
             this.printDocRegistros.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocRegistros_PrintPage);
+            // 
+            // Matricula
+            // 
+            this.Matricula.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Matricula.HeaderText = "Matricula";
+            this.Matricula.MaxInputLength = 8;
+            this.Matricula.Name = "Matricula";
+            this.Matricula.ReadOnly = true;
+            this.Matricula.Width = 75;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 69;
+            // 
+            // Apellido_Paterno
+            // 
+            this.Apellido_Paterno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Apellido_Paterno.HeaderText = "Apellido Paterno";
+            this.Apellido_Paterno.Name = "Apellido_Paterno";
+            this.Apellido_Paterno.ReadOnly = true;
+            // 
+            // Apellido_Materno
+            // 
+            this.Apellido_Materno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Apellido_Materno.HeaderText = "Apellido Materno";
+            this.Apellido_Materno.Name = "Apellido_Materno";
+            this.Apellido_Materno.ReadOnly = true;
+            this.Apellido_Materno.Width = 102;
+            // 
+            // Carrera
+            // 
+            this.Carrera.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Carrera.HeaderText = "Carrera";
+            this.Carrera.Name = "Carrera";
+            this.Carrera.ReadOnly = true;
+            this.Carrera.Width = 66;
+            // 
+            // Semestre
+            // 
+            this.Semestre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Semestre.HeaderText = "Semestre";
+            this.Semestre.Name = "Semestre";
+            this.Semestre.ReadOnly = true;
+            this.Semestre.Width = 76;
+            // 
+            // Fec_InicioSesión
+            // 
+            this.Fec_InicioSesión.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Fec_InicioSesión.HeaderText = "Fecha de Ingreso";
+            this.Fec_InicioSesión.Name = "Fec_InicioSesión";
+            this.Fec_InicioSesión.ReadOnly = true;
+            this.Fec_InicioSesión.Width = 106;
+            // 
+            // Fecha_Registro
+            // 
+            this.Fecha_Registro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Fecha_Registro.HeaderText = "Fecha de Registro";
+            this.Fecha_Registro.Name = "Fecha_Registro";
+            this.Fecha_Registro.ReadOnly = true;
+            this.Fecha_Registro.Width = 109;
             // 
             // AdminListaRegistros
             // 
@@ -290,7 +287,7 @@
         private System.Windows.Forms.ComboBox cboSRCHOrenadoPor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Drawing.Printing.PrintDocument printDocRegistros;
         private System.Windows.Forms.DataGridViewTextBoxColumn Matricula;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido_Paterno;
@@ -299,6 +296,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Semestre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fec_InicioSesión;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_Registro;
-        private System.Drawing.Printing.PrintDocument printDocRegistros;
     }
 }

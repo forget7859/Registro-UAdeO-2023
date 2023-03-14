@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Drawing.Printing;
+using System.IO;
 
 namespace Registro_UAdeO_2023
 {
@@ -37,11 +38,11 @@ namespace Registro_UAdeO_2023
             int row = T_Top+20;
             for(int i=0; i < Tabla.RowCount; i++)
             {
-                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[1].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner, row));
-                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[2].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 80, row));
-                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[3].Value)+" "+ Convert.ToString(Tabla.Rows[i].Cells[4].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 180, row));
-                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[5].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 310, row));
-                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[7].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 400, row));
+                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[0].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner, row));
+                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[1].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 80, row));
+                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[2].Value)+" "+ Convert.ToString(Tabla.Rows[i].Cells[3].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 180, row));
+                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[4].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 310, row));
+                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[6].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 400, row));
                 row+= 25;
                 /*
                 Tabla.Rows[i].Cells[0].Value = RegRegistros["Id"];
@@ -61,7 +62,17 @@ namespace Registro_UAdeO_2023
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-
+            printDocRegistros.PrinterSettings.PrinterName = "Microsoft Print to PDF";
+            printDocRegistros.PrinterSettings.PrintFileName = @"C:\RegistrosUAdeO\Capturas_Registros\" + "Captura No_0000.pdf";
+            printDocRegistros.PrinterSettings.PrintToFile = true;
+            PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+            printPreviewDialog.Document = printDocRegistros;
+            ((Form)printPreviewDialog).WindowState = FormWindowState.Maximized;
+            printPreviewDialog.ShowDialog();
+            //printDocRegistros.Print();
+            ((Form)printPreviewDialog).Close();
+            var Directorio = new DirectoryInfo(@"C:\Inventarios2\Facturas\");
+            Directorio.Refresh();
         }
 
         private void AdminListaRegistros_Load(object sender, EventArgs e)
@@ -126,7 +137,7 @@ namespace Registro_UAdeO_2023
 
             for (int i = 0; i < BindingContext[TBRegistros, "Registros"].Count; i++)
             {
-                string STRSql3 = "SELECT ID,NomLargo FROM Carrera WHERE ID=" + RegRegistros["Carrera"];
+                string STRSql3 = "SELECT ID,NomCorto FROM Carrera WHERE ID=" + RegRegistros["Carrera"];
                 SqlCommand cmd2 = new SqlCommand(STRSql3, cnn);
                 BDCarrera = new SqlDataAdapter(cmd2);
                 TBCarrera = new DataSet();
@@ -138,9 +149,17 @@ namespace Registro_UAdeO_2023
                 Tabla.Rows[i].Cells[1].Value = RegRegistros["Nombres"];
                 Tabla.Rows[i].Cells[2].Value = RegRegistros["Apellido_Paterno"];
                 Tabla.Rows[i].Cells[3].Value = RegRegistros["Apellido_Materno"];
-                Tabla.Rows[i].Cells[4].Value = RegCarrera["NomLargo"];
-                Tabla.Rows[i].Cells[5].Value = RegRegistros["Grupo"];
-                Tabla.Rows[i].Cells[6].Value = RegRegistros["Fec_Registro"];
+                Tabla.Rows[i].Cells[4].Value = RegCarrera["NomCorto"];
+                if (Convert.ToInt32(RegRegistros["Semestre"]) == 0)
+                {
+                    Tabla.Rows[i].Cells[5].Value = "-";
+                }
+                else {
+                    Tabla.Rows[i].Cells[5].Value = RegRegistros["Semestre"];
+                }
+                
+                Tabla.Rows[i].Cells[6].Value = RegRegistros["Fec_InicioSesion"];
+                Tabla.Rows[i].Cells[7].Value = RegRegistros["Fec_Registro"];
             }
         }
     }
