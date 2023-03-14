@@ -473,7 +473,11 @@ namespace Registro_UAdeO_2023
                 
             }
         }
-
+        private void InicioUsuario_KeyPress(object sender, KeyEventArgs e) {
+            if (e.KeyValue == Convert.ToChar(Keys.Escape)) {
+                ReiniciarVentana();
+            }
+        }
         private void txtApellidoMaterno_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == Convert.ToChar(Keys.Enter))
