@@ -98,32 +98,9 @@ namespace Registro_UAdeO_2023
                 MessageBox.Show("No hay ningun Registro en la base de datos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
                 return;
-                /*
-                STRSql = " INSERT INTO Registros (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Semestre,Fec_Registro,Fec_InicioSesion)" +
-                 "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@f_reg,f_ini)";
-                cmd = new SqlCommand(STRSql, cnn);
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@mat", Convert.ToString("00000000"));
-                cmd.Parameters.AddWithValue("@nom", Convert.ToString("NOMBRE"));
-                cmd.Parameters.AddWithValue("@a_p", Convert.ToString("APELLIDO PATERNO"));
-                cmd.Parameters.AddWithValue("@a_m", Convert.ToString("APELLIDO MATERNO"));
-                cmd.Parameters.AddWithValue("@carrera", 1);
-                //cmd.Parameters.AddWithValue("@gpo", 0);
-                cmd.Parameters.AddWithValue("@f_reg", DateTime.Now);
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
-
-                STRSql = "SELECT * FROM Registros";
-                cmd = new SqlCommand(STRSql, cnn);
-                BDRegistros = new SqlDataAdapter(cmd);
-                TBRegistros = new DataSet();
-                BDRegistros.Fill(TBRegistros, "Registros");
-                RegRegistros = TBRegistros.Tables["Registros"].Rows[0];
-                */
             }
 
-            STRSql = "SELECT ID,NomLargo FROM Carrera WHERE ID=" + Convert.ToString(RegRegistros["Carrera"]);
+            STRSql = "SELECT ID,NomCorto FROM Carrera WHERE ID=" + Convert.ToString(RegRegistros["Carrera"]);
             cmd = new SqlCommand(STRSql, cnn);
             BDCarrera = new SqlDataAdapter(cmd);
             TBCarrera = new DataSet();
