@@ -454,12 +454,32 @@ namespace Registro_UAdeO_2023
                 btnAceptar.Focus();
             }
         }
+        private void VerificarMatricula() {
+            if (txtMatricula.Text.Length == 8)
+            {
+                string matricula = txtMatricula.Text.Trim();
+                string generacionActual = Convert.ToString(DateTime.Now).Substring(8, 2);
+                int UnidadRegional = 04;
+                //MessageBox.Show(generacionActual + " + " + UnidadRegional + " + ");                     //debug
+                //MessageBox.Show(matricula.Substring(2, 2),"Unidad regional verificacion" );             //debug
+                if (Convert.ToInt32(matricula.Substring(0, 2)) <= Convert.ToInt32(generacionActual)) {
+                    if(Convert.ToInt32(matricula.Substring(2, 2)) == UnidadRegional) {
+                        MessageBox.Show("Tu matricula es valida");
+                        
+                    }
+                    else { 
+                            return; }                   
+                }
+                else { return; }
+            }
+            MostrarInfo();
+        }
         private void txtMatricula_KeyDown(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                //VerificarMatricula();
-                MostrarInfo();
+                VerificarMatricula();
+                
                 return;
             }
             if (e.KeyChar == (char)Keys.Back)
