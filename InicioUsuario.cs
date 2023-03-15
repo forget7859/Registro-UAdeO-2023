@@ -318,12 +318,10 @@ namespace Registro_UAdeO_2023
                         cmd.Parameters.AddWithValue("@a_p", Convert.ToString(txtApellidoPaterno.Text.Trim()));
                         cmd.Parameters.AddWithValue("@a_m", Convert.ToString(txtApellidoMaterno.Text.Trim()));
                         cmd.Parameters.AddWithValue("@carrera", IDCarrera);
-                      
                         cmd.Parameters.AddWithValue("@f_reg", DateTime.Now);
                         cmd.Connection.Open();
                         cmd.ExecuteNonQuery();
                         cmd.Connection.Close();
-                        
                     }
                     break;
                 default:
@@ -418,27 +416,22 @@ namespace Registro_UAdeO_2023
             cboCarrera.Items.Clear();
             cboCarrera.Text = "-Elige una carrera-";
         }
-
         private void label9_Click(object sender, EventArgs e)
         {
 
         }
-
         private void lblSemestre_Click(object sender, EventArgs e)
         {
 
         }
-
         private void administradorToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
-
         private void txtNombre_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == Convert.ToChar(Keys.Enter))
@@ -446,7 +439,6 @@ namespace Registro_UAdeO_2023
                 txtApellidoPaterno.Focus();
             }
         }
-
         private void txtSemestre_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == Convert.ToChar(Keys.Enter))
@@ -464,13 +456,17 @@ namespace Registro_UAdeO_2023
                 //MessageBox.Show(matricula.Substring(2, 2),"Unidad regional verificacion" );             //debug
                 if (Convert.ToInt32(matricula.Substring(0, 2)) <= Convert.ToInt32(generacionActual)) {
                     if(Convert.ToInt32(matricula.Substring(2, 2)) == UnidadRegional) {
-                        MessageBox.Show("Tu matricula es valida");
-                        
+                        //MessageBox.Show("Tu matricula es valida");                                    //debug
                     }
-                    else { 
-                            return; }                   
+                    else {
+                        MessageBox.Show("Tu matricula es Invalida");
+                        return;
+                    }                   
                 }
-                else { return; }
+                else {
+                    MessageBox.Show("Tu matricula es Invalida");
+                    return; 
+                }
             }
             MostrarInfo();
         }
@@ -493,25 +489,10 @@ namespace Registro_UAdeO_2023
             }
         }
 
-        private void txtMatricula_TextChanged(object sender, EventArgs e)
+        private void InicioUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-        }
-
-        private void txtSemestre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtGrupo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == Convert.ToChar(Keys.Enter))
+            if (e.KeyChar == Convert.ToChar(Keys.Escape))
             {
-                
-            }
-        }
-        private void InicioUsuario_KeyPress(object sender, KeyEventArgs e) {
-            if (e.KeyValue == Convert.ToChar(Keys.Escape)) {
                 ReiniciarVentana();
             }
         }

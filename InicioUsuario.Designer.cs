@@ -314,8 +314,7 @@ namespace Registro_UAdeO_2023
             this.txtMatricula.Name = "txtMatricula";
             this.txtMatricula.Size = new System.Drawing.Size(261, 38);
             this.txtMatricula.TabIndex = 4;
-            this.txtMatricula.TextChanged += new System.EventHandler(this.txtMatricula_TextChanged);
-            this.txtMatricula.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMatricula_KeyDown_Enter);
+            this.txtMatricula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatricula_KeyDown);
             // 
             // btnIngresar
             // 
@@ -378,6 +377,7 @@ namespace Registro_UAdeO_2023
             this.Text = "Inicio Usuario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.InicioUsuario_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InicioUsuario_KeyPress);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.pnlRegistro.ResumeLayout(false);
