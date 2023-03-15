@@ -60,10 +60,13 @@ namespace Registro_UAdeO_2023
             this.btnIngresar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
+            //this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             this.pnlRegistro.SuspendLayout();
             this.pnlMostrarDatos.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            //((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            //this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -313,7 +316,7 @@ namespace Registro_UAdeO_2023
             this.txtMatricula.Size = new System.Drawing.Size(156, 20);
             this.txtMatricula.TabIndex = 4;
             this.txtMatricula.TextChanged += new System.EventHandler(this.txtMatricula_TextChanged);
-            this.txtMatricula.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMatricula_KeyDown_Enter);
+            this.txtMatricula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMatricula_KeyDown);
             // 
             // btnIngresar
             // 
@@ -350,6 +353,17 @@ namespace Registro_UAdeO_2023
             this.label11.TabIndex = 13;
             this.label11.Text = "Ver. 0.1.0";
             // 
+            // splitContainer1
+            // 
+            //this.splitContainer1.Location = new System.Drawing.Point(795, 210);
+            //this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            //this.splitContainer1.Panel1.Enabled = false;
+            //this.splitContainer1.Size = new System.Drawing.Size(150, 100);
+            //this.splitContainer1.TabIndex = 14;
+            // 
             // InicioUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,6 +372,7 @@ namespace Registro_UAdeO_2023
             this.BackgroundImage = global::Registro_UAdeO_2023.Properties.Resources.Lince_Circul;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(800, 520);
+            //this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.pnlRegistro);
             this.Controls.Add(this.pnlMostrarDatos);
@@ -384,6 +399,8 @@ namespace Registro_UAdeO_2023
             this.pnlMostrarDatos.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            //((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            //this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,5 +436,6 @@ namespace Registro_UAdeO_2023
         private System.Windows.Forms.TextBox txtSemestre;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private SplitContainer splitContainer1;
     }
 }

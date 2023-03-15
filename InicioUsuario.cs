@@ -22,7 +22,6 @@ namespace Registro_UAdeO_2023
         {
             administradorToolStripMenuItem.Enabled = true;
             menuStrip1.Visible = true;
-            //
             pnlRegistro.Visible = false;
             pnlMostrarDatos.Visible = false;
             cboCarrera.Text = "-Elige una carrera-";
@@ -453,6 +452,24 @@ namespace Registro_UAdeO_2023
             if (e.KeyValue == Convert.ToChar(Keys.Enter))
             {
                 btnAceptar.Focus();
+            }
+        }
+        private void txtMatricula_KeyDown(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                //VerificarMatricula();
+                MostrarInfo();
+                return;
+            }
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+                return;
+            }
+            if (!char.IsNumber((char)e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
 
