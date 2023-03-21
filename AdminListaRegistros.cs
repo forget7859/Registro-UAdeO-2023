@@ -17,9 +17,9 @@ namespace Registro_UAdeO_2023
         {
             InitializeComponent();
         }
-        private SqlDataAdapter BDRegistros, BDCarrera;
-        private DataSet TBRegistros, TBCarrera;
-        private DataRow RegRegistros, RegCarrera;
+        private SqlDataAdapter BDRegistros, BDCarrera, BDGenero;
+        private DataSet TBRegistros, TBCarrera, TBGenero;
+        private DataRow RegRegistros, RegCarrera, RegGenero;
         public string con;
         private void printDocRegistros_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -110,6 +110,17 @@ namespace Registro_UAdeO_2023
             {
                 BindingContext[TBCarrera, "Carrera"].Position = i;
                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
+            }
+            STRSql = "SELECT Id,NomGenero FROM Genero WHERE Id =" + Convert.ToString(RegRegistros["Genero"]);
+            cmd = new SqlCommand(STRSql, cnn);
+            BDGenero = new SqlDataAdapter(cmd);
+            TBGenero = new DataSet();
+            BDGenero.Fill(TBGenero, "Genero");
+            RegGenero = TBGenero.Tables["Genero"].Rows[0];
+            for (int i = 0; i <= BindingContext[TBGenero, "Genero"].Count - 1; i++)
+            {
+                BindingContext[TBGenero, "Genero"].Position = i;
+                RegGenero = TBGenero.Tables["Genero"].Rows[i];
             }
 
             for (int i = 0; i < BindingContext[TBRegistros, "Registros"].Count; i++)

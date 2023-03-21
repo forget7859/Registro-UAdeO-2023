@@ -12,10 +12,10 @@ namespace Registro_UAdeO_2023
         {
             InitializeComponent();
         }
-        private SqlDataAdapter BDDocentes,BDAlumnos, BDCarrera;
-        private DataSet TBDocentes,TBAlumnos, TBCarrera;
-        private DataRow RegDocentes,RegAlumnos, RegCarrera;
-        private int IDCarrera;
+        private SqlDataAdapter BDDocentes,BDAlumnos, BDCarrera, BDGenero;
+        private DataSet TBDocentes,TBAlumnos, TBCarrera, TBGenero;
+        private DataRow RegDocentes,RegAlumnos, RegCarrera, RegGenero;
+        private int IDCarrera, IDGenero;
         protected string STRcon = " SERVER=.; DataBase=RegistroUAdeO; Integrated Security=SSPI";
         private SqlConnection cnn;
         public void InicioUsuario_Load(object sender, EventArgs e)
@@ -73,7 +73,21 @@ namespace Registro_UAdeO_2023
                             RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
                             cboCarrera.Items.Add(RegCarrera["NomLargo"]);
                         }
+
+                        STRSql2 = "SELECT NomGenero FROM Genero";
+                        cmd1 = new SqlCommand(STRSql2, cnn);
+                        BDGenero = new SqlDataAdapter(cmd1);
+                        TBGenero = new DataSet();
+                        BDGenero.Fill(TBGenero, "Genero");
+                        RegGenero = TBGenero.Tables["Genero"].Rows[0];
+                        for (int i = 0; i <= BindingContext[TBGenero, "Genero"].Count - 1; i++)
+                        {
+                            BindingContext[TBGenero, "Genero"].Position = i;
+                            RegGenero = TBGenero.Tables["Genero"].Rows[i];
+                            cboGenero.Items.Add(RegGenero["NomGenero"]);
+                        }
                     }
+            
                     break;
                 case 4:
                     // Inicio de sesion para maestros
@@ -249,17 +263,12 @@ namespace Registro_UAdeO_2023
                         d = MessageBox.Show("La matricula no es valida! (Tiene que ser un numero de 8 digitos)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    if (cboCarrera.Text == "MAESTRO" || cboCarrera.Text == "DOCENTE")
-                    {
-                        d = MessageBox.Show("No puedes elegir Maestro o Docente!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
                    
                     if (MessageBox.Show("¿Esta Seguro que Desea crear un nuevo Registro?", "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         SqlConnection cnn = new SqlConnection(STRcon);
-                        string STRsql = " INSERT INTO Alumnos (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Semestre,Fec_Registro)" +
-                         "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@f_reg)";
+                        string STRsql = " INSERT INTO Alumnos (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Semestre,Fec_Registro,Genero)" +
+                         "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@f_reg,@Gen)";
                         SqlCommand cmd = new SqlCommand(STRsql, cnn);
                         cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("@mat", Convert.ToString(txtMatricula.Text.Trim()));
@@ -269,6 +278,7 @@ namespace Registro_UAdeO_2023
                         cmd.Parameters.AddWithValue("@carrera", IDCarrera);
                         cmd.Parameters.AddWithValue("@sem", Convert.ToInt32(txtSemestre.Text.Trim()));
                         cmd.Parameters.AddWithValue("@f_reg", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@Gen", IDGenero);
                         cmd.Connection.Open();
                         cmd.ExecuteNonQuery();
                         cmd.Connection.Close(); 
@@ -351,8 +361,8 @@ namespace Registro_UAdeO_2023
             SqlConnection cnn = new SqlConnection(STRcon);
             switch(txtMatricula.Text.Length){
                 case 8:
-                    string STRsql = "INSERT INTO Registros(Matricula, Nombres, Apellido_Paterno, Apellido_Materno, Carrera, Semestre, Fec_Registro, Fec_InicioSesion) " +
-                        "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@fec_Registro,@fec_sesion)";
+                    string STRsql = "INSERT INTO Registros(Matricula, Nombres, Apellido_Paterno, Apellido_Materno, Carrera, Semestre, Fec_Registro, Fec_InicioSesion, Genero) " +
+                        "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@fec_Registro,@fec_sesion, @gen)";
                     SqlCommand cmd = new SqlCommand(STRsql, cnn);
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@mat", RegAlumnos["Matricula"]);
@@ -363,6 +373,7 @@ namespace Registro_UAdeO_2023
                     cmd.Parameters.AddWithValue("@sem", RegAlumnos["Semestre"]);
                     cmd.Parameters.AddWithValue("@fec_registro", RegAlumnos["Fec_Registro"]);
                     cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@gen", RegAlumnos["Genero"]);
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
@@ -380,6 +391,7 @@ namespace Registro_UAdeO_2023
                     cmd.Parameters.AddWithValue("@sem", 0);
                     cmd.Parameters.AddWithValue("@fec_registro", RegDocentes["Fec_Registro"]);
                     cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@gen", RegDocentes["Genero"]);
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
@@ -415,6 +427,20 @@ namespace Registro_UAdeO_2023
         private void administradorToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
+
+        private void cboGenero_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            SqlConnection cnn = new SqlConnection(STRcon);
+            string STRSql = "SELECT Id FROM Genero WHERE NomGenero = '" + cboCarrera.Text.Trim() + "'";
+            SqlCommand cmd1 = new SqlCommand(STRSql, cnn);
+            BDGenero = new SqlDataAdapter(cmd1);
+            TBGenero = new DataSet();
+            BDGenero.Fill(TBGenero, "Genero");
+            RegGenero = TBGenero.Tables["Genero"].Rows[0];
+            IDGenero = Convert.ToInt32(RegGenero["Id"]);
+        }
+
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -428,6 +454,11 @@ namespace Registro_UAdeO_2023
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

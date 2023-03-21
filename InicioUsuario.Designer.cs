@@ -60,6 +60,8 @@ namespace Registro_UAdeO_2023
             this.btnIngresar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblGenero = new System.Windows.Forms.Label();
+            this.cboGenero = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.pnlRegistro.SuspendLayout();
             this.pnlMostrarDatos.SuspendLayout();
@@ -105,6 +107,8 @@ namespace Registro_UAdeO_2023
             // 
             this.pnlRegistro.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlRegistro.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlRegistro.Controls.Add(this.cboGenero);
+            this.pnlRegistro.Controls.Add(this.lblGenero);
             this.pnlRegistro.Controls.Add(this.txtSemestre);
             this.pnlRegistro.Controls.Add(this.label10);
             this.pnlRegistro.Controls.Add(this.cboCarrera);
@@ -124,7 +128,7 @@ namespace Registro_UAdeO_2023
             // 
             // txtSemestre
             // 
-            this.txtSemestre.Location = new System.Drawing.Point(393, 128);
+            this.txtSemestre.Location = new System.Drawing.Point(712, 71);
             this.txtSemestre.MaxLength = 1;
             this.txtSemestre.Name = "txtSemestre";
             this.txtSemestre.Size = new System.Drawing.Size(48, 31);
@@ -134,7 +138,7 @@ namespace Registro_UAdeO_2023
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(365, 98);
+            this.label10.Location = new System.Drawing.Point(590, 74);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(103, 25);
             this.label10.TabIndex = 28;
@@ -354,6 +358,25 @@ namespace Registro_UAdeO_2023
             this.label11.TabIndex = 13;
             this.label11.Text = "Ver. 0.1.0";
             // 
+            // lblGenero
+            // 
+            this.lblGenero.AutoSize = true;
+            this.lblGenero.Location = new System.Drawing.Point(373, 100);
+            this.lblGenero.Name = "lblGenero";
+            this.lblGenero.Size = new System.Drawing.Size(83, 25);
+            this.lblGenero.TabIndex = 29;
+            this.lblGenero.Text = "Genero";
+            this.lblGenero.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // cboGenero
+            // 
+            this.cboGenero.FormattingEnabled = true;
+            this.cboGenero.Location = new System.Drawing.Point(281, 128);
+            this.cboGenero.Name = "cboGenero";
+            this.cboGenero.Size = new System.Drawing.Size(261, 33);
+            this.cboGenero.TabIndex = 30;
+            this.cboGenero.SelectedIndexChanged += new System.EventHandler(this.cboGenero_SelectedIndexChanged);
+            // 
             // InicioUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -422,5 +445,7 @@ namespace Registro_UAdeO_2023
         private System.Windows.Forms.TextBox txtSemestre;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private Label lblGenero;
+        private ComboBox cboGenero;
     }
 }
