@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Registro_UAdeO_2023
@@ -13,8 +14,8 @@ namespace Registro_UAdeO_2023
             InitializeComponent();
         }
         private SqlDataAdapter BDDocentes,BDAlumnos, BDCarrera, BDGenero;
-        private DataSet TBDocentes,TBAlumnos, TBCarrera, TBGenero;
-        private DataRow RegDocentes,RegAlumnos, RegCarrera, RegGenero;
+        private DataSet TBDocentes,TBAlumnos, TBCarrera, TBGenero, TBFiltro;
+        private DataRow RegDocentes,RegAlumnos, RegCarrera, RegGenero, RegFiltro;
         private int IDCarrera, IDGenero;
         protected string STRcon = " SERVER=.; DataBase=RegistroUAdeO; Integrated Security=SSPI";
         private SqlConnection cnn;
@@ -61,6 +62,7 @@ namespace Registro_UAdeO_2023
                         txtSemestre.Visible = true;
                         pnlRegistro.Visible = true;
                         SqlConnection cnn = new SqlConnection(STRcon);
+                        /*
                         string STRSql2 = "SELECT NomLargo FROM Carrera";
                         SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
                         BDCarrera = new SqlDataAdapter(cmd1);
@@ -73,9 +75,9 @@ namespace Registro_UAdeO_2023
                             RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
                             cboCarrera.Items.Add(RegCarrera["NomLargo"]);
                         }
-
-                        STRSql2 = "SELECT NomGenero FROM Genero";
-                        cmd1 = new SqlCommand(STRSql2, cnn);
+                        */
+                        string STRSql2 = "SELECT NomGenero FROM Genero";
+                        SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
                         BDGenero = new SqlDataAdapter(cmd1);
                         TBGenero = new DataSet();
                         BDGenero.Fill(TBGenero, "Genero");
@@ -215,13 +217,21 @@ namespace Registro_UAdeO_2023
         private void cboCarrera_SelectedIndexChanged(object sender, EventArgs e)
         {
             SqlConnection cnn = new SqlConnection(STRcon);
-            string STRSql = "SELECT ID FROM Carrera WHERE NomLargo ='" + cboCarrera.Text + "'";
+            string STRSql = "SELECT Id FROM Carrera WHERE NomLargo ='" + cboCarrera.Text + "'";
             SqlCommand cmd1 = new SqlCommand(STRSql, cnn);
             BDCarrera = new SqlDataAdapter(cmd1);
             TBCarrera = new DataSet();
             BDCarrera.Fill(TBCarrera, "Carrera");
-            RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
-            IDCarrera = Convert.ToInt32(RegCarrera["ID"]);
+            try
+            {
+                RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
+                IDCarrera = Convert.ToInt32(RegCarrera["Id"]);
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
         private void cboCarrera_KeyDown(Object sender, KeyEventArgs e)
         {
@@ -415,6 +425,8 @@ namespace Registro_UAdeO_2023
             txtSemestre.Text = null;
             cboCarrera.Items.Clear();
             cboCarrera.Text = "-Elige una carrera-";
+
+            txtMatricula.Focus();
         }
         private void label9_Click(object sender, EventArgs e)
         {
@@ -441,6 +453,31 @@ namespace Registro_UAdeO_2023
             IDGenero = Convert.ToInt32(RegGenero["Id"]);
         }
 
+        private void cboCarrera_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarDatos();
+        }
+        private void FiltrarDatos()
+        {
+            string carrera = cboCarrera.Text.Trim();
+            try
+            {
+                string STRsql = "SELECT NomLargo FROM Carrera WHERE NomLargo LIKE '%" + cboCarrera.Text.Trim() + "%'";
+                SqlConnection cnn = new SqlConnection(STRcon);
+                SqlCommand cmd = new SqlCommand(STRsql, cnn);
+                SqlDataAdapter BDFiltro = new SqlDataAdapter(cmd);
+                TBFiltro = new DataSet();
+                BDFiltro.Fill(TBFiltro, "Carrera");
+            } catch (Exception) { return; }
+            cboCarrera.Items.Clear();
+            cboCarrera.Text.foc
+            for (int i = 0; i <= BindingContext[TBFiltro, "Carrera"].Count - 1; i++)
+            {
+                RegFiltro = TBFiltro.Tables["Carrera"].Rows[i];
+                cboCarrera.Items.Add(RegFiltro["NomLargo"]);
+            }
+            cboCarrera.DroppedDown = true; 
+        }
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
