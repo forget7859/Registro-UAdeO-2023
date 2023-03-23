@@ -43,11 +43,11 @@ namespace Registro_UAdeO_2023
             this.label10 = new System.Windows.Forms.Label();
             this.cboCarrera = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtApellidoMaterno = new System.Windows.Forms.TextBox();
             this.txtApellidoPaterno = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pnlMostrarDatos = new System.Windows.Forms.Panel();
@@ -166,10 +166,11 @@ namespace Registro_UAdeO_2023
             // 
             // cboCarrera
             // 
+            this.cboCarrera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCarrera.FormattingEnabled = true;
             this.cboCarrera.Location = new System.Drawing.Point(5, 99);
             this.cboCarrera.Name = "cboCarrera";
-            this.cboCarrera.Size = new System.Drawing.Size(352, 33);
+            this.cboCarrera.Size = new System.Drawing.Size(352, 24);
             this.cboCarrera.TabIndex = 6;
             this.cboCarrera.SelectedIndexChanged += new System.EventHandler(this.cboCarrera_SelectedIndexChanged);
             this.cboCarrera.TextChanged += new System.EventHandler(this.cboCarrera_TextChanged);
@@ -184,6 +185,16 @@ namespace Registro_UAdeO_2023
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(472, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(174, 25);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Apellido Materno";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtApellidoMaterno
             // 
@@ -221,16 +232,6 @@ namespace Registro_UAdeO_2023
             this.label7.Size = new System.Drawing.Size(84, 25);
             this.label7.TabIndex = 20;
             this.label7.Text = "Carrera";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(472, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(174, 25);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Apellido Materno";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 

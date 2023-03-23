@@ -13,9 +13,9 @@ namespace Registro_UAdeO_2023
         {
             InitializeComponent();
         }
-        private SqlDataAdapter BDDocentes,BDAlumnos, BDCarrera, BDGenero;
-        private DataSet TBDocentes,TBAlumnos, TBCarrera, TBGenero, TBFiltro;
-        private DataRow RegDocentes,RegAlumnos, RegCarrera, RegGenero, RegFiltro;
+        private SqlDataAdapter BDDocentes, BDAlumnos, BDCarrera, BDGenero;
+        private DataSet TBDocentes, TBAlumnos, TBCarrera, TBGenero, TBFiltro;
+        private DataRow RegDocentes, RegAlumnos, RegCarrera, RegGenero, RegFiltro;
         private int IDCarrera, IDGenero;
         protected string STRcon = " SERVER=.; DataBase=RegistroUAdeO; Integrated Security=SSPI";
         private SqlConnection cnn;
@@ -33,7 +33,7 @@ namespace Registro_UAdeO_2023
         private void IngresarDatos()
         {
             DialogResult d;
-            switch(txtMatricula.Text.Length)
+            switch (txtMatricula.Text.Length)
             {
                 case 8:
                     // Inicio de sesion para alumnos
@@ -64,7 +64,7 @@ namespace Registro_UAdeO_2023
                         txtSemestre.Visible = true;
                         pnlRegistro.Visible = true;
                         SqlConnection cnn = new SqlConnection(STRcon);
-                        /*
+                        
                         string STRSql2 = "SELECT NomLargo FROM Carrera";
                         SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
                         BDCarrera = new SqlDataAdapter(cmd1);
@@ -77,9 +77,9 @@ namespace Registro_UAdeO_2023
                             RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
                             cboCarrera.Items.Add(RegCarrera["NomLargo"]);
                         }
-                        */
-                        string STRSql2 = "SELECT NomGenero FROM Genero";
-                        SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
+                        
+                        STRSql2 = "SELECT NomGenero FROM Genero";
+                        cmd1 = new SqlCommand(STRSql2, cnn);
                         BDGenero = new SqlDataAdapter(cmd1);
                         TBGenero = new DataSet();
                         BDGenero.Fill(TBGenero, "Genero");
@@ -129,7 +129,7 @@ namespace Registro_UAdeO_2023
                             BindingContext[TBCarrera, "Carrera"].Position = i;
                             RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
                             cboCarrera.Items.Add(RegCarrera["NomLargo"]);
-                            
+
                         }
                         txtNombre.Focus();
                     }
@@ -149,7 +149,7 @@ namespace Registro_UAdeO_2023
             string STRSql;
             switch (txtMatricula.Text.Length)
             {
-                
+
                 case 8:
                     groupBox1.Enabled = false;
                     MessageBox.Show(txtMatricula.Text.Trim());
@@ -178,9 +178,9 @@ namespace Registro_UAdeO_2023
                     pnlMostrarDatos.Visible = true;
                     GuardarDatos();
                     ReiniciarVentana();
-                 break;
+                    break;
 
-                  case 4:
+                case 4:
                     groupBox1.Enabled = false;
                     STRSql = "SELECT * FROM Docentes WHERE Matricula = " + txtMatricula.Text.Trim();
                     cnn = new SqlConnection(STRcon);
@@ -189,7 +189,7 @@ namespace Registro_UAdeO_2023
                     TBDocentes = new DataSet();
                     BDDocentes.Fill(TBDocentes, "Docentes");
                     BindingContext[TBDocentes, "Docentes"].Position = 0;
-                    
+
                     RegDocentes = TBDocentes.Tables["Docentes"].Rows[0];
 
                     STRSql = "SELECT NomLargo FROM Carrera WHERE ID=" + RegDocentes["Carrera"];
@@ -235,26 +235,38 @@ namespace Registro_UAdeO_2023
             {
 
             }
-            
+
         }
         private void cboCarrera_KeyDown(Object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == Convert.ToChar(Keys.Enter)){
-                cboGenero.Focus();
+            if ((e.KeyValue == Convert.ToChar(Keys.Enter) && (cboCarrera.DroppedDown == false)))
+            {
+                if (cboCarrera.Text == "" || cboCarrera.Text == null) {
+                    FiltrarDatos();
+                }
+                else
+                {
+                    cboGenero.Focus();
+                }
             }
             if ((e.KeyValue == Convert.ToChar(Keys.Down) && (cboCarrera.DroppedDown == false)))
             {
-                cboCarrera.DroppedDown = true;
-            }
-            if ((e.KeyValue == Convert.ToChar(Keys.Up) && (cboCarrera.DroppedDown == true))) // Evita mover el indice para evitar fallos en el sistema
-            {
-                cboCarrera.DroppedDown = true;
-            }
-            if ((e.KeyValue == Convert.ToChar(Keys.Down) && (cboCarrera.DroppedDown == true))) // Evita mover el indice para evitar fallos en el sistema
-            {
+                FiltrarDatos();
                 cboCarrera.DroppedDown = true;
             }
 
+            /*
+            if ((e.KeyValue == Convert.ToChar(Keys.Up) && (cboCarrera.DroppedDown == true))) // Evita mover el indice para evitar fallos en el sistema
+            {
+                e.Handled = true;
+                
+            }
+            if ((e.KeyValue == Convert.ToChar(Keys.Down) && (cboCarrera.DroppedDown == true))) // Evita mover el indice para evitar fallos en el sistema
+            {
+                e.Handled = true;
+                
+            }
+            */
         }
         private void cboGenero_KeyDown(Object sender, KeyEventArgs e)
         {
@@ -263,7 +275,7 @@ namespace Registro_UAdeO_2023
                 txtSemestre.Focus();
             }
         }
-        private void btnAceptar_Click(object sender, EventArgs e){
+        private void btnAceptar_Click(object sender, EventArgs e) {
             DialogResult d;
             switch (txtMatricula.Text.Length)
             {
@@ -294,7 +306,7 @@ namespace Registro_UAdeO_2023
                         d = MessageBox.Show("Falta llenar el espacio Semestre!");
                         return;
                     }
-                   
+
                     SqlConnection cnn = new SqlConnection(STRcon);
                     string STRsql = " INSERT INTO Alumnos (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Semestre,Fec_Registro,Genero)" +
                     "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@f_reg,@Gen)";
@@ -310,7 +322,7 @@ namespace Registro_UAdeO_2023
                     cmd.Parameters.AddWithValue("@Gen", IDGenero);
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
-                    cmd.Connection.Close(); 
+                    cmd.Connection.Close();
                     MessageBox.Show("Alumno registrado! Favor de inscribirse a continuacion");
                     break;
                 case 4:
@@ -384,7 +396,7 @@ namespace Registro_UAdeO_2023
         private void GuardarDatos()
         {
             SqlConnection cnn = new SqlConnection(STRcon);
-            switch(txtMatricula.Text.Length){
+            switch (txtMatricula.Text.Length) {
                 case 8:
                     string STRsql = "INSERT INTO Registros(Matricula, Nombres, Apellido_Paterno, Apellido_Materno, Carrera, Semestre, Fec_Registro, Fec_InicioSesion, Genero) " +
                         "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@sem,@fec_Registro,@fec_sesion, @gen)";
@@ -440,7 +452,7 @@ namespace Registro_UAdeO_2023
             txtSemestre.Text = null;
             cboCarrera.Items.Clear();
             cboCarrera.Visible = false;
-         
+            txtMatricula.Focus();
 
             txtMatricula.Focus();
         }
@@ -475,33 +487,39 @@ namespace Registro_UAdeO_2023
 
         private void cboCarrera_TextChanged(object sender, EventArgs e)
         {
-            FiltrarDatos();
+            
         }
         private void FiltrarDatos()
         {
+            string carrera = cboCarrera.Text;
             cboCarrera.Items.Clear();
-            try
+            cboCarrera.Text = carrera;
+
+            string STRsql;
+            if (cboCarrera.Text == "" || cboCarrera == null)
             {
-                string STRsql = "SELECT NomLargo FROM Carrera WHERE NomLargo LIKE '%" + cboCarrera.Text.Trim() + "%' OR NomCorto LIKE '%" + cboCarrera.Text.Trim() + "%'";
-                SqlConnection cnn = new SqlConnection(STRcon);
-                SqlCommand cmd = new SqlCommand(STRsql, cnn);
-                SqlDataAdapter BDFiltro = new SqlDataAdapter(cmd);
-                TBFiltro = new DataSet();
-                BDFiltro.Fill(TBFiltro, "Carrera");
+                STRsql = "SELECT NomLargo FROM Carrera ORDER BY NomLargo ASC";
             }
-            catch (Exception) { return; }
-            for (int i = 0; i <= BindingContext[TBFiltro, "Carrera"].Count - 1; i++)
-            {
-                RegFiltro = TBFiltro.Tables["Carrera"].Rows[i];
-                cboCarrera.Items.Add(RegFiltro["NomLargo"]);
+            else {
+                STRsql = "SELECT NomLargo FROM Carrera WHERE NomLargo LIKE '%" + cboCarrera.Text.Trim() + "%' OR NomCorto LIKE '%" + cboCarrera.Text.Trim() + "%' ORDER BY NomLargo ASC";
             }
-            try
-            {
-                cboCarrera.DroppedDown = true;
+
+            SqlConnection cnn = new SqlConnection(STRcon);
+            SqlCommand cmd1 = new SqlCommand(STRsql, cnn);
+            SqlDataAdapter BDFiltro = new SqlDataAdapter(cmd1);
+            TBFiltro = new DataSet();
+            BDFiltro.Fill(TBFiltro, "Carrera");
+            try {
+                for (int i = 0; i <= BindingContext[TBFiltro, "Carrera"].Count - 1; i++)
+                {
+                    RegFiltro = TBFiltro.Tables["Carrera"].Rows[i];
+                    cboCarrera.Items.Add(RegFiltro["NomLargo"]);
+                }
                 cboCarrera.Select(cboCarrera.Text.Length, cboCarrera.Text.Length);
-            }
-            catch (Exception) { }
+                cboCarrera.DroppedDown = true;
+            } catch (Exception) { }
         }
+
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -573,7 +591,6 @@ namespace Registro_UAdeO_2023
             }
            IngresarDatos();
         }
-
         private void InicioUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
