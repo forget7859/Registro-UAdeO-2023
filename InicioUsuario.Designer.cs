@@ -113,32 +113,33 @@ namespace Registro_UAdeO_2023
             this.pnlRegistro.Controls.Add(this.label10);
             this.pnlRegistro.Controls.Add(this.cboCarrera);
             this.pnlRegistro.Controls.Add(this.btnAceptar);
+            this.pnlRegistro.Controls.Add(this.label3);
             this.pnlRegistro.Controls.Add(this.txtApellidoMaterno);
             this.pnlRegistro.Controls.Add(this.txtApellidoPaterno);
             this.pnlRegistro.Controls.Add(this.txtNombre);
             this.pnlRegistro.Controls.Add(this.label7);
-            this.pnlRegistro.Controls.Add(this.label3);
             this.pnlRegistro.Controls.Add(this.label2);
             this.pnlRegistro.Controls.Add(this.label6);
             this.pnlRegistro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlRegistro.Location = new System.Drawing.Point(15, 332);
+            this.pnlRegistro.Location = new System.Drawing.Point(12, 332);
             this.pnlRegistro.Name = "pnlRegistro";
-            this.pnlRegistro.Size = new System.Drawing.Size(773, 164);
+            this.pnlRegistro.Size = new System.Drawing.Size(773, 139);
             this.pnlRegistro.TabIndex = 12;
             // 
             // cboGenero
             // 
             this.cboGenero.FormattingEnabled = true;
-            this.cboGenero.Location = new System.Drawing.Point(281, 128);
+            this.cboGenero.Location = new System.Drawing.Point(365, 99);
             this.cboGenero.Name = "cboGenero";
-            this.cboGenero.Size = new System.Drawing.Size(261, 33);
+            this.cboGenero.Size = new System.Drawing.Size(119, 33);
             this.cboGenero.TabIndex = 7;
             this.cboGenero.SelectedIndexChanged += new System.EventHandler(this.cboGenero_SelectedIndexChanged);
+            this.cboGenero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboGenero_KeyDown);
             // 
             // lblGenero
             // 
             this.lblGenero.AutoSize = true;
-            this.lblGenero.Location = new System.Drawing.Point(373, 100);
+            this.lblGenero.Location = new System.Drawing.Point(383, 71);
             this.lblGenero.Name = "lblGenero";
             this.lblGenero.Size = new System.Drawing.Size(83, 25);
             this.lblGenero.TabIndex = 29;
@@ -147,7 +148,7 @@ namespace Registro_UAdeO_2023
             // 
             // txtSemestre
             // 
-            this.txtSemestre.Location = new System.Drawing.Point(712, 71);
+            this.txtSemestre.Location = new System.Drawing.Point(515, 99);
             this.txtSemestre.MaxLength = 1;
             this.txtSemestre.Name = "txtSemestre";
             this.txtSemestre.Size = new System.Drawing.Size(48, 31);
@@ -157,7 +158,7 @@ namespace Registro_UAdeO_2023
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(590, 74);
+            this.label10.Location = new System.Drawing.Point(487, 71);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(103, 25);
             this.label10.TabIndex = 28;
@@ -166,9 +167,9 @@ namespace Registro_UAdeO_2023
             // cboCarrera
             // 
             this.cboCarrera.FormattingEnabled = true;
-            this.cboCarrera.Location = new System.Drawing.Point(3, 128);
+            this.cboCarrera.Location = new System.Drawing.Point(5, 99);
             this.cboCarrera.Name = "cboCarrera";
-            this.cboCarrera.Size = new System.Drawing.Size(261, 33);
+            this.cboCarrera.Size = new System.Drawing.Size(352, 33);
             this.cboCarrera.TabIndex = 6;
             this.cboCarrera.SelectedIndexChanged += new System.EventHandler(this.cboCarrera_SelectedIndexChanged);
             this.cboCarrera.TextChanged += new System.EventHandler(this.cboCarrera_TextChanged);
@@ -176,9 +177,9 @@ namespace Registro_UAdeO_2023
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(595, 115);
+            this.btnAceptar.Location = new System.Drawing.Point(599, 84);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(175, 46);
+            this.btnAceptar.Size = new System.Drawing.Size(165, 46);
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -187,25 +188,25 @@ namespace Registro_UAdeO_2023
             // txtApellidoMaterno
             // 
             this.txtApellidoMaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtApellidoMaterno.Location = new System.Drawing.Point(595, 34);
+            this.txtApellidoMaterno.Location = new System.Drawing.Point(472, 28);
             this.txtApellidoMaterno.Name = "txtApellidoMaterno";
-            this.txtApellidoMaterno.Size = new System.Drawing.Size(165, 31);
+            this.txtApellidoMaterno.Size = new System.Drawing.Size(185, 31);
             this.txtApellidoMaterno.TabIndex = 5;
             this.txtApellidoMaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtApellidoMaterno_KeyDown);
             // 
             // txtApellidoPaterno
             // 
             this.txtApellidoPaterno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtApellidoPaterno.Location = new System.Drawing.Point(333, 34);
+            this.txtApellidoPaterno.Location = new System.Drawing.Point(279, 28);
             this.txtApellidoPaterno.Name = "txtApellidoPaterno";
-            this.txtApellidoPaterno.Size = new System.Drawing.Size(169, 31);
+            this.txtApellidoPaterno.Size = new System.Drawing.Size(187, 31);
             this.txtApellidoPaterno.TabIndex = 4;
             this.txtApellidoPaterno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtApellidoPaterno_KeyDown);
             // 
             // txtNombre
             // 
             this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombre.Location = new System.Drawing.Point(0, 34);
+            this.txtNombre.Location = new System.Drawing.Point(4, 28);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(264, 31);
             this.txtNombre.TabIndex = 3;
@@ -215,7 +216,7 @@ namespace Registro_UAdeO_2023
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 100);
+            this.label7.Location = new System.Drawing.Point(4, 71);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(84, 25);
             this.label7.TabIndex = 20;
@@ -224,16 +225,17 @@ namespace Registro_UAdeO_2023
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(328, 6);
+            this.label3.Location = new System.Drawing.Point(472, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(174, 25);
             this.label3.TabIndex = 17;
             this.label3.Text = "Apellido Materno";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(590, 6);
+            this.label2.Location = new System.Drawing.Point(286, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(170, 25);
             this.label2.TabIndex = 16;
@@ -242,7 +244,7 @@ namespace Registro_UAdeO_2023
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 6);
+            this.label6.Location = new System.Drawing.Point(7, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(118, 25);
             this.label6.TabIndex = 15;
