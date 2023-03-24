@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>F:\Registro UAdeO 2003 0.1.1\</PublishUrl>
+    <PublishUrl>C:\Registro UAdeO 2003 0.1.1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>

@@ -121,7 +121,7 @@ namespace Registro_UAdeO_2023
             this.pnlRegistro.Controls.Add(this.label2);
             this.pnlRegistro.Controls.Add(this.label6);
             this.pnlRegistro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlRegistro.Location = new System.Drawing.Point(12, 332);
+            this.pnlRegistro.Location = new System.Drawing.Point(12, 333);
             this.pnlRegistro.Name = "pnlRegistro";
             this.pnlRegistro.Size = new System.Drawing.Size(773, 139);
             this.pnlRegistro.TabIndex = 12;
@@ -219,7 +219,7 @@ namespace Registro_UAdeO_2023
             this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombre.Location = new System.Drawing.Point(4, 28);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(264, 31);
+            this.txtNombre.Size = new System.Drawing.Size(269, 31);
             this.txtNombre.TabIndex = 3;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             this.txtNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyDown);
@@ -379,7 +379,7 @@ namespace Registro_UAdeO_2023
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 13);
             this.label11.TabIndex = 13;
-            this.label11.Text = "Ver. beta 0.1.0";
+            this.label11.Text = "Ver. beta 0.1.1";
             // 
             // InicioUsuario
             // 
@@ -397,6 +397,7 @@ namespace Registro_UAdeO_2023
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
