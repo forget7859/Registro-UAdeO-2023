@@ -28,14 +28,15 @@ namespace Registro_UAdeO_2023
         private void btnLogin_Click(object sender, EventArgs e)
         {
             IngresarDatos();
-            
+
         }
-        private void IngresarDatos() {
+        private void IngresarDatos()
+        {
             DialogResult d;
             if (txtUsername.Text.Trim() == "")
             {
                 d = MessageBox.Show("El campo de Matricula esta vacio", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                
+
                 return;
             }
             if (txtPassword.Text.Trim() == "")
@@ -70,13 +71,15 @@ namespace Registro_UAdeO_2023
             }
 
         }
-        private void txtUsername_KeyDown(object sender, KeyEventArgs e) {
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
             if (e.KeyValue == Convert.ToChar(Keys.Enter))
             {
                 txtPassword.Focus();
             }
         }
-        private void txtPassword_KeyDown(object sender, KeyEventArgs e) {
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
             if (e.KeyValue == Convert.ToChar(Keys.Enter))
             {
                 IngresarDatos();

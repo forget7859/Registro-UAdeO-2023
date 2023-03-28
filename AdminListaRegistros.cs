@@ -1,13 +1,10 @@
-﻿using Registro_UAdeO_2023.Properties;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Registro_UAdeO_2023
 {
@@ -20,30 +17,56 @@ namespace Registro_UAdeO_2023
         private SqlDataAdapter BDRegistros, BDCarrera, BDGenero;
         private DataSet TBRegistros, TBCarrera, TBGenero;
         private DataRow RegRegistros, RegCarrera, RegGenero;
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMatricula_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public string con;
         private void printDocRegistros_PrintPage(object sender, PrintPageEventArgs e)
         {
             int T_l_corner = 100, T_Top = 100;
             string hora = Convert.ToString(DateTime.Now).Substring(10);
-            string fecha = Convert.ToString(DateTime.Now).Substring(0,9);
+            string fecha = Convert.ToString(DateTime.Now).Substring(0, 9);
             e.Graphics.DrawString("Reporte de Ingreso al Centro de Computo", new Font("Calibri", 18, FontStyle.Bold), Brushes.Black, new Point(200, 50));
-            e.Graphics.DrawString(Convert.ToString("Fecha de Reporte: "+fecha), new Font("Calibri", 14, FontStyle.Bold), Brushes.Black, new Point(200, 80));
-            e.Graphics.DrawString(Convert.ToString("Hora"+hora), new Font("Calibri", 14, FontStyle.Bold), Brushes.Black, new Point(450, 80));
+            e.Graphics.DrawString(Convert.ToString("Fecha de Reporte: " + fecha), new Font("Calibri", 14, FontStyle.Bold), Brushes.Black, new Point(200, 80));
+            e.Graphics.DrawString(Convert.ToString("Hora" + hora), new Font("Calibri", 14, FontStyle.Bold), Brushes.Black, new Point(450, 80));
 
             e.Graphics.DrawString("Matricula", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner, T_Top));
-            e.Graphics.DrawString("Nombre(s)", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner+80, T_Top));
-            e.Graphics.DrawString("Apellido(s)", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner+180, T_Top));
-            e.Graphics.DrawString("Carrera", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner+310, T_Top));
-            e.Graphics.DrawString("Fecha de Sesión", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner+400, T_Top));
-            int row = T_Top+20;
-            for(int i=0; i < Tabla.RowCount; i++)
+            e.Graphics.DrawString("Nombre(s)", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 80, T_Top));
+            e.Graphics.DrawString("Apellido(s)", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 180, T_Top));
+            e.Graphics.DrawString("Carrera", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 310, T_Top));
+            e.Graphics.DrawString("Fecha de Sesión", new Font("Calibri", 12, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 400, T_Top));
+            int row = T_Top + 20;
+            for (int i = 0; i < Tabla.RowCount; i++)
             {
                 e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[0].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner, row));
                 e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[1].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 80, row));
-                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[2].Value)+" "+ Convert.ToString(Tabla.Rows[i].Cells[3].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 180, row));
+                e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[2].Value) + " " + Convert.ToString(Tabla.Rows[i].Cells[3].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 180, row));
                 e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[4].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 310, row));
                 e.Graphics.DrawString(Convert.ToString(Tabla.Rows[i].Cells[6].Value), new Font("Calibri", 10, FontStyle.Bold), Brushes.Black, new Point(T_l_corner + 400, row));
-                row+= 25;
+                row += 25;
                 /*
                 Tabla.Rows[i].Cells[0].Value = RegRegistros["Id"];
                 Tabla.Rows[i].Cells[1].Value = RegRegistros["Matricula"];
@@ -131,6 +154,7 @@ namespace Registro_UAdeO_2023
                 TBCarrera = new DataSet();
                 BDCarrera.Fill(TBCarrera, "Carrera");
                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
+
                 RegRegistros = TBRegistros.Tables["Registros"].Rows[i];
                 Tabla.Rows.Add();
                 Tabla.Rows[i].Cells[0].Value = RegRegistros["Matricula"];
@@ -142,10 +166,11 @@ namespace Registro_UAdeO_2023
                 {
                     Tabla.Rows[i].Cells[5].Value = "-";
                 }
-                else {
+                else
+                {
                     Tabla.Rows[i].Cells[5].Value = RegRegistros["Semestre"];
                 }
-                
+
                 Tabla.Rows[i].Cells[6].Value = RegRegistros["Fec_InicioSesion"];
                 Tabla.Rows[i].Cells[7].Value = RegRegistros["Fec_Registro"];
             }
