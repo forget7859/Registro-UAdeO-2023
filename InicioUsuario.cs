@@ -49,7 +49,6 @@ namespace Registro_UAdeO_2023
             DialogResult d;
             if (UsuarioInvitado == false)
             {
-
                 switch (txtMatricula.Text.Length)
                 {
                     case 8:
@@ -101,7 +100,7 @@ namespace Registro_UAdeO_2023
                             BDGenero = new SqlDataAdapter(cmd1);
                             TBGenero = new DataSet();
                             BDGenero.Fill(TBGenero, "Genero");
-                            RegGenero = TBGenero.Tables["Genero"].Rows[0];
+                            RegGenero = TBGenero.Tables["Genero"].Rows[0];  
                             cboGenero.Items.Clear();
                             for (int i = 0; i <= BindingContext[TBGenero, "Genero"].Count - 1; i++)
                             {
@@ -148,7 +147,6 @@ namespace Registro_UAdeO_2023
                                 BindingContext[TBCarrera, "Carrera"].Position = i;
                                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
                                 cboCarrera.Items.Add(RegCarrera["NomLargo"]);
-
                             }
                             STRSql2 = "SELECT NomGenero FROM Genero";
                             cmd1 = new SqlCommand(STRSql2, cnn);
@@ -626,7 +624,6 @@ namespace Registro_UAdeO_2023
             string carrera = cboCarrera.Text;
             cboCarrera.Items.Clear();
             cboCarrera.Text = carrera;
-
             string STRsql;
             if (cboCarrera.Text == "" || cboCarrera == null)
             {
@@ -636,7 +633,6 @@ namespace Registro_UAdeO_2023
             {
                 STRsql = "SELECT NomLargo FROM Carrera WHERE NomLargo LIKE '%" + cboCarrera.Text.Trim() + "%' OR NomCorto LIKE '%" + cboCarrera.Text.Trim() + "%' ORDER BY NomLargo ASC";
             }
-
             SqlConnection cnn = new SqlConnection(STRcon);
             SqlCommand cmd1 = new SqlCommand(STRsql, cnn);
             SqlDataAdapter BDFiltro = new SqlDataAdapter(cmd1);
@@ -649,7 +645,7 @@ namespace Registro_UAdeO_2023
                     RegFiltro = TBFiltro.Tables["Carrera"].Rows[i];
                     cboCarrera.Items.Add(RegFiltro["NomLargo"]);
                 }
-                cboCarrera.Select(cboCarrera.Text.Length, cboCarrera.Text.Length);
+                //cboCarrera.Select(cboCarrera.Text.Length, cboCarrera.Text.Length);
                 cboCarrera.DroppedDown = true;
             }
             catch (Exception) { }

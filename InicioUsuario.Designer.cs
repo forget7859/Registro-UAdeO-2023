@@ -181,7 +181,6 @@ namespace Registro_UAdeO_2023
             this.cboCarrera.Name = "cboCarrera";
             this.cboCarrera.Size = new System.Drawing.Size(352, 24);
             this.cboCarrera.TabIndex = 6;
-            this.cboCarrera.SelectedIndexChanged += new System.EventHandler(this.cboCarrera_SelectedIndexChanged);
             this.cboCarrera.TabIndexChanged += new System.EventHandler(this.cboCarrera_TabIndexChanged);
             this.cboCarrera.Enter += new System.EventHandler(this.cboCarrera_Enter);
             this.cboCarrera.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCarrera_KeyDown);
@@ -397,7 +396,7 @@ namespace Registro_UAdeO_2023
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.BackgroundImage = global::Registro_UAdeO_2023.Properties.Resources.Lince_Circul;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(800, 520);
             this.Controls.Add(this.label11);
