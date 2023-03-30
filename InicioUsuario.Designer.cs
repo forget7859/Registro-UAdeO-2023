@@ -62,8 +62,6 @@ namespace Registro_UAdeO_2023
             this.txtMatricula = new System.Windows.Forms.TextBox();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblInvitado = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnlRegistro.SuspendLayout();
@@ -359,7 +357,7 @@ namespace Registro_UAdeO_2023
             // btnIngresar
             // 
             this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresar.Location = new System.Drawing.Point(274, 109);
+            this.btnIngresar.Location = new System.Drawing.Point(274, 97);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(261, 44);
             this.btnIngresar.TabIndex = 2;
@@ -371,40 +369,17 @@ namespace Registro_UAdeO_2023
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.lblInvitado);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnIngresar);
             this.groupBox1.Controls.Add(this.txtMatricula);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 159);
+            this.groupBox1.Size = new System.Drawing.Size(773, 159);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese los siguientes datos por favor";
-            // 
-            // lblInvitado
-            // 
-            this.lblInvitado.AutoSize = true;
-            this.lblInvitado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvitado.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblInvitado.Location = new System.Drawing.Point(625, 86);
-            this.lblInvitado.Name = "lblInvitado";
-            this.lblInvitado.Size = new System.Drawing.Size(80, 25);
-            this.lblInvitado.TabIndex = 5;
-            this.lblInvitado.Text = "Invitado";
-            this.lblInvitado.Click += new System.EventHandler(this.lblInvitado_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(561, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(180, 75);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "¿No eres Alumno o\r\nDocente? Ingresa\r\n como";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label11
             // 
@@ -488,8 +463,6 @@ namespace Registro_UAdeO_2023
         private System.Windows.Forms.Label label11;
         private Label lblGenero;
         private ComboBox cboGenero;
-        private Label lblInvitado;
-        private Label label5;
         private Label label12;
     }
 }

@@ -76,6 +76,7 @@ namespace Registro_UAdeO_2023
                             txtApellidoPaterno.Text = "";
                             txtApellidoMaterno.Text = "";
                             cboCarrera.Text = "";
+                            cboGenero.Text = "";
                             txtSemestre.Text = "";
                             groupBox1.Enabled = false;
                             txtSemestre.Visible = true;
@@ -180,7 +181,7 @@ namespace Registro_UAdeO_2023
         {
             VerificarMatricula();
         }
-        private void MostrarInfo()
+        private void MostrarInfo() // Metodo que se encarga de mostrar en un cuadro gris tu informacion al momento de ingresar tu matricula
         {
             string STRSql;
             if (UsuarioInvitado == false)
@@ -264,7 +265,7 @@ namespace Registro_UAdeO_2023
 
                 ReiniciarVentana();
             }
-        }
+        } 
         private void cboCarrera_SelectedIndexChanged(object sender, EventArgs e)
         {
             SqlConnection cnn = new SqlConnection(STRcon);
@@ -288,35 +289,31 @@ namespace Registro_UAdeO_2023
         {
             if ((e.KeyValue == Convert.ToChar(Keys.Enter) && (cboCarrera.DroppedDown == false)))
             {
-                if (cboCarrera.Text == "" || cboCarrera.Text == null)
+                if (!(cboCarrera.Text == "" || cboCarrera.Text == null))
+                {
+                    cboGenero.Focus();
+                }
+            }
+            if(!(cboCarrera.DropDownHeight == 0))
+            {
+                cboCarrera.DropDownHeight = 1+(cboCarrera.Items.Count * cboCarrera.Height);
+            }
+
+            cboCarrera.DroppedDown = true;
+            FiltrarDatos();
+        }
+        private void cboGenero_KeyDown(Object sender, KeyEventArgs e)
+        {
+            if ((e.KeyValue == Convert.ToChar(Keys.Enter) && (cboGenero.DroppedDown == false)))
+            {
+                if (cboGenero.Text == "" || cboGenero.Text == null)
                 {
                     FiltrarDatos();
                 }
                 else
                 {
-                    cboGenero.Focus();
+                    btnAceptar.Focus();
                 }
-            }
-
-
-            /*
-            if ((e.KeyValue == Convert.ToChar(Keys.Up) && (cboCarrera.DroppedDown == true))) // Evita mover el indice para evitar fallos en el sistema
-            {
-                e.Handled = true;
-                
-            }
-            if ((e.KeyValue == Convert.ToChar(Keys.Down) && (cboCarrera.DroppedDown == true))) // Evita mover el indice para evitar fallos en el sistema
-            {
-                e.Handled = true;
-                
-            }
-            */
-        }
-        private void cboGenero_KeyDown(Object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == Convert.ToChar(Keys.Enter))
-            {
-                txtSemestre.Focus();
             }
         }
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -352,7 +349,7 @@ namespace Registro_UAdeO_2023
                             cboCarrera.BackColor = Color.Yellow;
                             retorno = true;
                         }
-                        else { cboCarrera.BackColor = Color.White; }
+                        else { cboGenero.BackColor = Color.White; }
 
                         if (cboGenero.Text != Convert.ToString(RegGenero["NomGenero"]))
                         {
@@ -495,18 +492,15 @@ namespace Registro_UAdeO_2023
             frm.con = STRcon;
             frm.Show();
         }
-
         private void cboCarrera_TabIndexChanged(object sender, EventArgs e)
         {
             
         }
-
         private void cboCarrera_Enter(object sender, EventArgs e)
         {
             cboCarrera.DroppedDown = true;
             cboCarrera.Focus();
         }
-
         private void cboGenero_Enter(object sender, EventArgs e)
         {
             cboGenero.DroppedDown = true;
@@ -524,36 +518,9 @@ namespace Registro_UAdeO_2023
         {
 
         }
-        private void lblInvitado_Click(object sender, EventArgs e)
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
-            UsuarioInvitado = true;
 
-            cboCarrera.Visible = false;
-            groupBox1.Enabled = false;
-            cboGenero.Visible = true;
-            pnlRegistro.Visible = true;
-            txtSemestre.Visible = false;
-            label7.Visible = false;
-            label10.Visible = false;
-            pnlRegistro.Visible = true;
-
-            SqlConnection cnn = new SqlConnection(STRcon);
-            string STRSql2 = "SELECT NomLargo FROM Carrera";
-            SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
-            STRSql2 = "SELECT NomGenero FROM Genero";
-            cmd1 = new SqlCommand(STRSql2, cnn);
-            BDGenero = new SqlDataAdapter(cmd1);
-            TBGenero = new DataSet();
-            BDGenero.Fill(TBGenero, "Genero");
-            RegGenero = TBGenero.Tables["Genero"].Rows[0];
-            cboGenero.Items.Clear();
-            for (int i = 0; i <= BindingContext[TBGenero, "Genero"].Count - 1; i++)
-            {
-                BindingContext[TBGenero, "Genero"].Position = i;
-                RegGenero = TBGenero.Tables["Genero"].Rows[i];
-                cboGenero.Items.Add(RegGenero["NomGenero"]);
-            }
-            txtNombre.Focus();
         }
         private void GuardarDatos()
         {
@@ -632,6 +599,8 @@ namespace Registro_UAdeO_2023
             txtSemestre.Text = null;
             cboCarrera.Items.Clear();
             cboCarrera.Visible = false;
+            cboGenero.Items.Clear();
+            cboGenero.Visible = true;
             txtMatricula.Focus();
         }
         private void cboGenero_SelectedIndexChanged(object sender, EventArgs e)
