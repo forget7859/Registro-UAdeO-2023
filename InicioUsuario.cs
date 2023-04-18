@@ -21,7 +21,7 @@ namespace Registro_UAdeO_2023
         private SqlConnection cnn;
         public void InicioUsuario_Load(object sender, EventArgs e)
         {
-            administradorToolStripMenuItem.Enabled = false;
+            administradorToolStripMenuItem.Enabled = true;
             cboCarrera.Visible = false;
             menuStrip1.Visible = true;
             pnlRegistro.Visible = false;

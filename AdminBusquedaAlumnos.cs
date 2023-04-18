@@ -131,7 +131,7 @@ namespace Registro_UAdeO_2023
                 BDCarrera = new SqlDataAdapter(cmd2);
                 TBCarrera = new DataSet();
                 BDCarrera.Fill(TBCarrera, "Carrera");
-                RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
+                //RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
                 RegAlumnos = TBAlumnos.Tables["Alumnos"].Rows[i];
                 Tabla.Rows.Add();
                 Tabla.Rows[i].Cells[0].Value = RegAlumnos["Matricula"];
@@ -190,8 +190,8 @@ namespace Registro_UAdeO_2023
                 Tabla.Rows[i].Cells[2].Value = RegAlumnos["Apellido_Paterno"];
                 Tabla.Rows[i].Cells[3].Value = RegAlumnos["Apellido_Materno"];
                 Tabla.Rows[i].Cells[4].Value = RegCarrera["NomLargo"];
-                Tabla.Rows[i].Cells[5].Value = RegAlumnos["Grupo"];
-                Tabla.Rows[i].Cells[6].Value = RegAlumnos["Fec_Registro"];
+                //Tabla.Rows[i].Cells[5].Value = RegAlumnos["Grupo"];
+                //Tabla.Rows[i].Cells[6].Value = RegAlumnos["Fec_Registro"];
             }
         }
     }
