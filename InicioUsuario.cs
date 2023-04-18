@@ -588,8 +588,10 @@ namespace Registro_UAdeO_2023
             txtApellidoMaterno.Text = null;
             txtSemestre.Text = null;
             cboCarrera.Items.Clear();
+            cboCarrera.Text=null;
             cboCarrera.Visible = false;
             cboGenero.Items.Clear();
+            cboGenero.Text=null;
             cboGenero.Visible = true;
             txtMatricula.Focus();
         }
