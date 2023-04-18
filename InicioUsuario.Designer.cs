@@ -181,7 +181,6 @@ namespace Registro_UAdeO_2023
             this.cboCarrera.Name = "cboCarrera";
             this.cboCarrera.Size = new System.Drawing.Size(352, 24);
             this.cboCarrera.TabIndex = 6;
-            this.cboCarrera.SelectedIndexChanged += new System.EventHandler(this.cboCarrera_SelectedIndexChanged);
             this.cboCarrera.TabIndexChanged += new System.EventHandler(this.cboCarrera_TabIndexChanged);
             this.cboCarrera.Enter += new System.EventHandler(this.cboCarrera_Enter);
             this.cboCarrera.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCarrera_KeyDown);
@@ -342,7 +341,6 @@ namespace Registro_UAdeO_2023
             this.label1.Size = new System.Drawing.Size(248, 62);
             this.label1.TabIndex = 3;
             this.label1.Text = "Ingrese su numero:\r\nAlumno / Empleado\r\n";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtMatricula
             // 
@@ -379,7 +377,6 @@ namespace Registro_UAdeO_2023
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese los siguientes datos por favor";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label11
             // 
@@ -397,7 +394,7 @@ namespace Registro_UAdeO_2023
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.BackgroundImage = global::Registro_UAdeO_2023.Properties.Resources.Lince_Circul;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(800, 520);
             this.Controls.Add(this.label11);
