@@ -17,11 +17,11 @@ namespace Registro_UAdeO_2023
         private DataRow RegDocentes, RegAlumnos, RegCarrera, RegGenero, RegFiltro;
         private int IDCarrera, IDGenero;
         private bool UsuarioInvitado = false;
-        protected string STRcon = " SERVER=.; DataBase=RegistroUAdeO; Integrated Security=SSPI";
+        protected string STRcon = "SERVER=.; DataBase=RegistroUAdeO; Integrated Security=SSPI";
         private SqlConnection cnn;
         public void InicioUsuario_Load(object sender, EventArgs e)
         {
-            administradorToolStripMenuItem.Enabled = false;
+            administradorToolStripMenuItem.Enabled = true;
             cboCarrera.Visible = false;
             menuStrip1.Visible = true;
             pnlRegistro.Visible = false;
@@ -497,7 +497,7 @@ namespace Registro_UAdeO_2023
         private void cboCarrera_Enter(object sender, EventArgs e)
         {
             cboCarrera.DroppedDown = true;
-            cboCarrera.Focus();
+            cboGenero.Focus();
         }
         private void cboGenero_Enter(object sender, EventArgs e)
         {
@@ -510,14 +510,6 @@ namespace Registro_UAdeO_2023
             {
                 btnAceptar.Focus();
             }
-
-        }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
 
         }
         private void GuardarDatos()
@@ -645,7 +637,7 @@ namespace Registro_UAdeO_2023
                     RegFiltro = TBFiltro.Tables["Carrera"].Rows[i];
                     cboCarrera.Items.Add(RegFiltro["NomLargo"]);
                 }
-                //cboCarrera.Select(cboCarrera.Text.Length, cboCarrera.Text.Length);
+                cboCarrera.Select(cboCarrera.Text.Length, cboCarrera.Text.Length);
                 cboCarrera.DroppedDown = true;
             }
             catch (Exception) { }
@@ -714,14 +706,7 @@ namespace Registro_UAdeO_2023
         {
             if (e.KeyValue == Convert.ToChar(Keys.Enter))
             {
-                if (!(UsuarioInvitado == true))
-                {
                     cboCarrera.Focus();
-                }
-                else {
-                    cboGenero.Focus();
-                }
-                
             }
         }
         private void txtApellidoPaterno_KeyDown(object sender, KeyEventArgs e)

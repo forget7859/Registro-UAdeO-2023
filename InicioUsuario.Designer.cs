@@ -341,7 +341,6 @@ namespace Registro_UAdeO_2023
             this.label1.Size = new System.Drawing.Size(248, 62);
             this.label1.TabIndex = 3;
             this.label1.Text = "Ingrese su numero:\r\nAlumno / Empleado\r\n";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtMatricula
             // 
@@ -378,7 +377,6 @@ namespace Registro_UAdeO_2023
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese los siguientes datos por favor";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label11
             // 
