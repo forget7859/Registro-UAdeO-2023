@@ -145,6 +145,7 @@ namespace Registro_UAdeO_2023
             this.cboGenero.SelectedIndexChanged += new System.EventHandler(this.cboGenero_SelectedIndexChanged);
             this.cboGenero.Enter += new System.EventHandler(this.cboGenero_Enter);
             this.cboGenero.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboGenero_KeyDown);
+            this.cboGenero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboGenero_KeyPress);
             // 
             // lblGenero
             // 
@@ -181,9 +182,11 @@ namespace Registro_UAdeO_2023
             this.cboCarrera.Name = "cboCarrera";
             this.cboCarrera.Size = new System.Drawing.Size(352, 24);
             this.cboCarrera.TabIndex = 6;
-            this.cboCarrera.TabIndexChanged += new System.EventHandler(this.cboCarrera_TabIndexChanged);
+            this.cboCarrera.SelectedIndexChanged += new System.EventHandler(this.cboCarrera_SelectedIndexChanged);
+            this.cboCarrera.TextChanged += new System.EventHandler(this.cboCarrera_TextChanged);
             this.cboCarrera.Enter += new System.EventHandler(this.cboCarrera_Enter);
             this.cboCarrera.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCarrera_KeyDown);
+            this.cboCarrera.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCarrera_KeyPress);
             // 
             // btnAceptar
             // 
