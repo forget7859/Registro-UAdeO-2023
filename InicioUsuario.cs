@@ -26,8 +26,6 @@ namespace Registro_UAdeO_2023
             menuStrip1.Visible = true;
             pnlRegistro.Visible = false;
             pnlMostrarDatos.Visible = false;
-
-
             string STRSql = "SELECT NomLargo FROM Carrera";
             SqlConnection cnn = new SqlConnection(STRcon);
             SqlCommand cmd = new SqlCommand(STRSql, cnn);
@@ -278,20 +276,13 @@ namespace Registro_UAdeO_2023
             {
                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
                 IDCarrera = Convert.ToInt32(RegCarrera["Id"]);
-            }
-            catch (Exception)
-            {
-
-            }
+            } catch (Exception){}
         }
         private void cboGenero_KeyDown(Object sender, KeyEventArgs e)
         {
             if ((e.KeyValue == Convert.ToChar(Keys.Enter) && (cboGenero.DroppedDown == false)))
             {
-                if (cboGenero.Text == "" || cboGenero.Text == null)
-                {
-                    
-                }
+                if (cboGenero.Text == "" || cboGenero.Text == null){}
                 else
                 {
                     btnAceptar.Focus();
@@ -332,7 +323,7 @@ namespace Registro_UAdeO_2023
                             cboCarrera.BackColor = Color.Yellow;
                             retorno = true;
                         }
-                        else { cboGenero.BackColor = Color.White; }
+                        else { cboCarrera.BackColor = Color.White; }
 
                         if (cboGenero.Text != Convert.ToString(RegGenero["NomGenero"]))
                         {
@@ -485,11 +476,6 @@ namespace Registro_UAdeO_2023
             //FiltrarCarreras();
         }
 
-        private void cboCarrera_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void cboCarrera_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -502,17 +488,8 @@ namespace Registro_UAdeO_2023
                 if(cboCarrera.DroppedDown == false)
                 {
                     cboGenero.Focus();
-                }
-                
+                }   
             }
-            
-
-            /*
-            if (e.KeyValue == Convert.ToChar(Keys.Down))
-            {
-
-            }
-            */
         }
         private void FiltrarGenero()
         {
