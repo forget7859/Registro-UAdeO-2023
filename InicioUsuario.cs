@@ -366,26 +366,41 @@ namespace Registro_UAdeO_2023
                     case 4:
                         if (txtNombre.Text == null || txtNombre.Text == "")
                         {
-                            MessageBox.Show("El espacio Nombre está vacio");
-                            return;
+                            mensaje += "- Nombre\n";
+                            txtNombre.BackColor = Color.Yellow;
+                            retorno = true;
                         }
+                        else { txtNombre.BackColor = Color.White; }
+
                         if (txtApellidoPaterno.Text == null || txtApellidoPaterno.Text == "")
                         {
-                            MessageBox.Show("Falta llenar el apellido paterno!");
-                            return;
+                            mensaje += "- Apellido Paterno\n";
+                            txtApellidoPaterno.BackColor = Color.Yellow;
+                            retorno = true;
                         }
+                        else { txtApellidoPaterno.BackColor = Color.White; }
+
                         if (cboCarrera.Text.Trim() != Convert.ToString(RegCarrera["NomLargo"]))
                         {
-                            MessageBox.Show("Error en el cuadro carrera.n Por favor abre el cuadro y elige tu carrera.\nTambien puedes escribir la carrera y abrir el recuadro para filtrar las carreras.");
-                            return;
+                            mensaje += "- Carrera\n";
+                            cboCarrera.BackColor = Color.Yellow;
+                            retorno = true;
                         }
+                        else { cboCarrera.BackColor = Color.White; }
 
                         if (cboGenero.Text != Convert.ToString(RegGenero["NomGenero"]))
                         {
-                            MessageBox.Show("Error en el cuadro Genero.n Por favor abre el cuadro y elige tu carrera.");
+                            mensaje += "- Genero\n";
+                            cboGenero.BackColor = Color.Yellow;
+                            retorno = true;
+                        }
+                        else { cboGenero.BackColor = Color.White; }
+
+                        if (retorno == true)
+                        {
+                            MessageBox.Show(mensaje, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
                         }
-
                         cnn = new SqlConnection(STRcon);
                         STRsql = "INSERT INTO Docentes (Matricula,Nombres,Apellido_Paterno,Apellido_Materno,Carrera,Fec_Registro)" +
                              "VALUES (@mat,@nom,@a_p,@a_m,@carrera,@f_reg)";
@@ -504,6 +519,11 @@ namespace Registro_UAdeO_2023
                     txtSemestre.Focus();
                 }
             }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void cboGenero_Enter(object sender, EventArgs e)
