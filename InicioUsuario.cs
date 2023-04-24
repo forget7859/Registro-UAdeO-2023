@@ -79,7 +79,7 @@ namespace Registro_UAdeO_2023
                             pnlRegistro.Visible = true;
                             
                             SqlConnection cnn = new SqlConnection(STRcon);
-                            /*
+                            
                             string STRSql2 = "SELECT NomLargo FROM Carrera";
                             SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
                             BDCarrera = new SqlDataAdapter(cmd1);
@@ -92,9 +92,9 @@ namespace Registro_UAdeO_2023
                                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
                                 cboCarrera.Items.Add(RegCarrera["NomLargo"]);
                             }
-                            */
-                            string STRSql2 = "SELECT NomGenero FROM Genero";
-                            SqlCommand cmd1 = new SqlCommand(STRSql2, cnn);
+                            
+                            STRSql2 = "SELECT NomGenero FROM Genero";
+                            cmd1 = new SqlCommand(STRSql2, cnn);
                             BDGenero = new SqlDataAdapter(cmd1);
                             TBGenero = new DataSet();
                             BDGenero.Fill(TBGenero, "Genero");
