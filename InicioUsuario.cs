@@ -695,7 +695,7 @@ namespace Registro_UAdeO_2023
             }
             else
             {
-                STRsql = "SELECT NomGenero FROM Genero ORDER BY NomGenero ASC";
+                    STRsql = "SELECT NomGenero FROM Genero ORDER BY NomGenero ASC";
             }
             SqlConnection cnn = new SqlConnection(STRcon);
             SqlCommand cmd1 = new SqlCommand(STRsql, cnn);
