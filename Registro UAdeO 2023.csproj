@@ -99,6 +99,12 @@
     <Compile Include="AdminListaRegistros.Designer.cs">
       <DependentUpon>AdminListaRegistros.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminReportecs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminReportecs.Designer.cs">
+      <DependentUpon>AdminReportecs.cs</DependentUpon>
+    </Compile>
     <Compile Include="InicioUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminModificarAlumno.resx">
       <DependentUpon>AdminModificarAlumno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminReportecs.resx">
+      <DependentUpon>AdminReportecs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioUsuario.resx">
       <DependentUpon>InicioUsuario.cs</DependentUpon>
