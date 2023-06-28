@@ -51,24 +51,32 @@ namespace Registro_UAdeO_2023
             BDAdmin = new SqlDataAdapter(cmd);
             TBAdmin = new DataSet();
             BDAdmin.Fill(TBAdmin, "Admin");
-            RegAdmin = TBAdmin.Tables["Admin"].Rows[0];
-            if (txtUsername.Text.Trim() == Convert.ToString(RegAdmin["Username"]) && txtPassword.Text.Trim() == Convert.ToString(RegAdmin["Password"]))
+            try
             {
-                if (AccessType == 0)
-                {
-                    AdminBusquedaAlumnos frm = new AdminBusquedaAlumnos();
-                    frm.con = con;
-                    Close();
-                    frm.ShowDialog();
-                }
-                if (AccessType == 1)
-                {
-                    AdminListaRegistros frm = new AdminListaRegistros();
-                    frm.con = con;
-                    Close();
-                    frm.ShowDialog();
-                }
+                RegAdmin = TBAdmin.Tables["Admin"].Rows[0];
             }
+            catch (Exception)
+            {
+                MessageBox.Show("EL Usuario / Contraseña es invalido");
+            }
+            if (txtUsername.Text.Trim() == Convert.ToString(RegAdmin["Username"]) && txtPassword.Text.Trim() == Convert.ToString(RegAdmin["Password"]))
+                {
+                    if (AccessType == 0)
+                    {
+                        AdminBusquedaAlumnos frm = new AdminBusquedaAlumnos();
+                        frm.con = con;
+                        Close();
+                        frm.ShowDialog();
+                    }
+                    if (AccessType == 1)
+                    {
+                        AdminReportes frm = new AdminReportes();
+                        frm.con = con;
+                        Close();
+                        frm.ShowDialog();
+                    }
+            }
+            
 
         }
         private void txtUsername_KeyDown(object sender, KeyEventArgs e)
