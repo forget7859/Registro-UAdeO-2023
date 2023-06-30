@@ -34,6 +34,9 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboxGenero = new System.Windows.Forms.CheckBox();
+            this.cboxCarrera = new System.Windows.Forms.CheckBox();
+            this.cboCarrera = new System.Windows.Forms.ComboBox();
             this.rBtnOtros = new System.Windows.Forms.RadioButton();
             this.rBtnMujer = new System.Windows.Forms.RadioButton();
             this.rBtnHombre = new System.Windows.Forms.RadioButton();
@@ -41,9 +44,6 @@
             this.fec_final = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.cboCarrera = new System.Windows.Forms.ComboBox();
-            this.cboxCarrera = new System.Windows.Forms.CheckBox();
-            this.cboxGenero = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -121,6 +121,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Parametros de filtro:";
             // 
+            // cboxGenero
+            // 
+            this.cboxGenero.AutoSize = true;
+            this.cboxGenero.Location = new System.Drawing.Point(7, 51);
+            this.cboxGenero.Name = "cboxGenero";
+            this.cboxGenero.Size = new System.Drawing.Size(61, 17);
+            this.cboxGenero.TabIndex = 7;
+            this.cboxGenero.Text = "Genero";
+            this.cboxGenero.UseVisualStyleBackColor = true;
+            this.cboxGenero.CheckedChanged += new System.EventHandler(this.cboxGenero_CheckedChanged);
+            // 
+            // cboxCarrera
+            // 
+            this.cboxCarrera.AutoSize = true;
+            this.cboxCarrera.Location = new System.Drawing.Point(7, 22);
+            this.cboxCarrera.Name = "cboxCarrera";
+            this.cboxCarrera.Size = new System.Drawing.Size(60, 17);
+            this.cboxCarrera.TabIndex = 6;
+            this.cboxCarrera.Text = "Carrera";
+            this.cboxCarrera.UseVisualStyleBackColor = true;
+            this.cboxCarrera.CheckedChanged += new System.EventHandler(this.cboxCarrera_CheckedChanged);
+            // 
+            // cboCarrera
+            // 
+            this.cboCarrera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCarrera.FormattingEnabled = true;
+            this.cboCarrera.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboCarrera.Location = new System.Drawing.Point(115, 18);
+            this.cboCarrera.Name = "cboCarrera";
+            this.cboCarrera.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cboCarrera.Size = new System.Drawing.Size(121, 21);
+            this.cboCarrera.TabIndex = 5;
+            // 
             // rBtnOtros
             // 
             this.rBtnOtros.AutoSize = true;
@@ -190,39 +223,6 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
-            // 
-            // cboCarrera
-            // 
-            this.cboCarrera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCarrera.FormattingEnabled = true;
-            this.cboCarrera.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboCarrera.Location = new System.Drawing.Point(115, 18);
-            this.cboCarrera.Name = "cboCarrera";
-            this.cboCarrera.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cboCarrera.Size = new System.Drawing.Size(121, 21);
-            this.cboCarrera.TabIndex = 5;
-            // 
-            // cboxCarrera
-            // 
-            this.cboxCarrera.AutoSize = true;
-            this.cboxCarrera.Location = new System.Drawing.Point(7, 22);
-            this.cboxCarrera.Name = "cboxCarrera";
-            this.cboxCarrera.Size = new System.Drawing.Size(60, 17);
-            this.cboxCarrera.TabIndex = 6;
-            this.cboxCarrera.Text = "Carrera";
-            this.cboxCarrera.UseVisualStyleBackColor = true;
-            this.cboxCarrera.CheckedChanged += new System.EventHandler(this.cboxCarrera_CheckedChanged);
-            // 
-            // cboxGenero
-            // 
-            this.cboxGenero.AutoSize = true;
-            this.cboxGenero.Location = new System.Drawing.Point(7, 51);
-            this.cboxGenero.Name = "cboxGenero";
-            this.cboxGenero.Size = new System.Drawing.Size(80, 17);
-            this.cboxGenero.TabIndex = 7;
-            this.cboxGenero.Text = "checkBox2";
-            this.cboxGenero.UseVisualStyleBackColor = true;
-            this.cboxGenero.CheckedChanged += new System.EventHandler(this.cboxGenero_CheckedChanged);
             // 
             // AdminReportes
             // 

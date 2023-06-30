@@ -14,18 +14,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Registro_UAdeO_2023
 {
     public partial class AdminReportes : Form
     {
-        private const string PictureFileName = @"Resources\logo-UAdeO-retina.png";
         private SqlDataAdapter BDRegistros, BDCarrera, BDGenero;
         private DataSet TBRegistros, TBCarrera, TBGenero;
         private DataRow RegRegistros, RegCarrera, RegGenero;
         public string con;
-        private string SaveFilePath = "";
+        private string parametros;
         private void rBtnMujer_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -37,15 +35,8 @@ namespace Registro_UAdeO_2023
         }
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            
             PrepararImpresion();
-        }
-        
-        private void CrearTabla(int x, int y, int columnas, DataTable table, PrintPageEventArgs e) {
-            for (int i = 0; i < columnas; i++)
-            {
-                //int separacion = 20;
-
-            }
         }
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -102,31 +93,22 @@ namespace Registro_UAdeO_2023
             BDCarrera = new SqlDataAdapter(cmd);
             TBCarrera = new DataSet();
             BDCarrera.Fill(TBCarrera, "Carrera");
-            RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
             for (int i = 0; i <= BindingContext[TBCarrera, "Carrera"].Count - 1; i++)
             {
                 BindingContext[TBCarrera, "Carrera"].Position = i;
                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
                 cboCarrera.Items.Add(RegCarrera["Nomlargo"]);
             }
+
             STRSql = "SELECT Id,NomGenero FROM Genero";
             cmd = new SqlCommand(STRSql, cnn);
             BDGenero = new SqlDataAdapter(cmd);
             TBGenero = new DataSet();
-            BDGenero.Fill(TBGenero, "Genero");
+            BDGenero.Fill(TBGenero, "Generos");
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
-        }
-        private void FiltrarQuery(string query) {
-            //string STRSql = "SELECT * FROM Registros WHERE fec_InicioSesion between '" + inicio + "' and '" + fin + "'";
-            if (cboxCarrera.Checked == true && cboCarrera.Enabled == true) {
-                //if()
-            }
-            if (cboxGenero.Checked == true) {
-                
-            }
         }
         private void PrepararImpresion()
         {
@@ -142,13 +124,40 @@ namespace Registro_UAdeO_2023
             mm = fin.Substring(3, 2);
             yyyy = fin.Substring(6, 4);
             fin = yyyy + mm + dd;
-
             string STRSql = "SELECT * FROM Registros WHERE fec_InicioSesion between '" + inicio + "' and '" + fin + "'";
-            FiltrarQuery(STRSql);
-            //string STRSql = "SELECT * FROM Registros";
+            if(cboxCarrera.Checked == true){
+                if(cboCarrera.Text != null) {
+                    for (int i = 0; i <= BindingContext[TBCarrera, "Carrera"].Count - 1; i++){
+                        RegCarrera = TBCarrera.Tables["Carrera"].Rows[i];
+                        if (cboCarrera.Text.Trim() == RegCarrera["NomLargo"].ToString()){
+                            STRSql += "AND Carrera = " + Convert.ToString(RegCarrera["Id"]);
+                            parametros = parametros + " Carrera = " + Convert.ToString(RegCarrera["NomCorto"]);
+                        }
+                    }
+                }
+            }
+            
+            if (cboxGenero.Checked == true)
+            {
+                if (rBtnHombre.Checked.Equals(true))
+                {
+                    STRSql += " AND Genero = 1 ";
+                    parametros = parametros + "Genero: H ";
+                }
+                if (rBtnMujer.Checked == true)
+                {
+                    STRSql = STRSql + " AND Genero = 2";
+                    parametros = parametros + " Genero: M ";
+                }
+                if (rBtnOtros.Checked == true)
+                {
+                    STRSql = STRSql + " AND Genero = 3";
+                    parametros = parametros + "Genero: O ";
+                }
+            }
+            MessageBox.Show(STRSql);
             SqlConnection cnn = new SqlConnection(con);
             SqlCommand cmd = new SqlCommand(STRSql, cnn);
-            MessageBox.Show(STRSql);
             try
             {
                 BDRegistros = new SqlDataAdapter(cmd);
@@ -165,6 +174,7 @@ namespace Registro_UAdeO_2023
             SLDocument sl = new SLDocument();
             SLPageSettings slSettings = new SLPageSettings();
             slSettings.Orientation = OrientationValues.Landscape;
+            slSettings.OddFooterText = dd + " - " + mm + " - " + yyyy;
             sl.SetPageSettings(slSettings);
             Bitmap bmp = Properties.Resources.logo_UAdeO_retina;
             Image logo = bmp;
@@ -207,7 +217,7 @@ namespace Registro_UAdeO_2023
             sl.MergeWorksheetCells("A3", "G3");
             sl.SetCellStyle("A3", slAligment);
 
-            sl.SetCellValue("A4", "PARAMETROS: " + fecha + "\tHora: " + hora);
+            sl.SetCellValue("A4", "PARAMETROS: ["+parametros+"]");
             sl.MergeWorksheetCells("A4", "G4");
             sl.SetCellStyle("A4", slAligment);
 
@@ -236,7 +246,6 @@ namespace Registro_UAdeO_2023
                 TBCarrera = new DataSet();
                 BDCarrera.Fill(TBCarrera, "Carrera");
                 RegCarrera = TBCarrera.Tables["Carrera"].Rows[0];
-                //ekfek
                 /*
                 STRSql = "SELECT NomGenero FROM Genero WHERE Id = "+RegRegistros["Genero"];
                 cmd = new SqlCommand(STRSql, cnn);
@@ -253,6 +262,7 @@ namespace Registro_UAdeO_2023
                 sl.SetCellValue("G" + (excColumna + i), Convert.ToString(RegRegistros["Fec_InicioSesion"]));
                 FinTabla = excColumna + i;
             }
+
             SLStyle sl1 = sl.CreateStyle();
             sl1.Border.BottomBorder.BorderStyle = BorderStyleValues.Thin;
             sl1.Border.LeftBorder.BorderStyle = BorderStyleValues.Thin;
@@ -262,19 +272,15 @@ namespace Registro_UAdeO_2023
             sl1.SetHorizontalAlignment(HorizontalAlignmentValues.Left);
             sl.SetCellStyle("A" + (excColumna-1), "G"+FinTabla,sl1);
 
-            string dia  = fecha.Substring(0, 2);
-            string mes  = fecha.Substring(3, 2);
-            string anio = fecha.Substring(6, 4);
-            MessageBox.Show(fecha+" / "+dia+" "+mes+" "+anio+"");
             saveFileDialog1.Title = "Gardar archivo en:";
-            saveFileDialog1.InitialDirectory = Environment.UserName+"\\Documents";
+            saveFileDialog1.InitialDirectory = Environment.UserName+ "\\Documents";
             saveFileDialog1.DefaultExt = ".xlsx";
-            saveFileDialog1.FileName = "Reporte de Ingreso"+dia+"-"+mes+"-"+anio;
-            //saveFileDialog1.ShowDialog();
-            sl.SaveAs("Excel.xlsx");
-            
-            MessageBox.Show("Reporte de Entradas creado exitosamente!");
+            saveFileDialog1.FileName = "Reporte de Ingreso "+dd+"-"+mm+"-"+yyyy;
+            saveFileDialog1.ShowDialog();
 
+            string dir = Path.GetFullPath(saveFileDialog1.FileName);
+            sl.SaveAs(dir);
+            Close();
         } 
     }
 }

@@ -412,6 +412,7 @@ namespace Registro_UAdeO_2023
                         cmd.Parameters.AddWithValue("@a_m", Convert.ToString(txtApellidoMaterno.Text.Trim()));
                         cmd.Parameters.AddWithValue("@carrera", IDCarrera);
                         cmd.Parameters.AddWithValue("@f_reg", DateTime.Now);
+
                         cmd.Connection.Open();
                         cmd.ExecuteNonQuery();
                         cmd.Connection.Close();
@@ -604,7 +605,8 @@ namespace Registro_UAdeO_2023
                     cmd.Parameters.AddWithValue("@sem", 0);
                     cmd.Parameters.AddWithValue("@fec_registro", RegDocentes["Fec_Registro"]);
                     cmd.Parameters.AddWithValue("@fec_sesion", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@gen", RegDocentes["Genero"]);
+                    cmd.Parameters.AddWithValue("@gen", 0);
+
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
